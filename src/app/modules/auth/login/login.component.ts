@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
     private LoginService: LoginService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private toastr: ToastrService,
     private storageUser: LoginStorageUserService,
+    private toastr: ToastrService,
   ) {
     this.imgLogo = "./assets/logo.png";
     this.login = this.formBuilder.group({
@@ -55,13 +55,13 @@ export class LoginComponent implements OnInit {
         this.storageUser.setUser(this.usuario)
         sessionStorage.setItem(LoginComponent.usuario, JSON.stringify(usuario));
         console.log(this.usuario);
-        if (this.usuario.rol_activo == 1) {
-          window.location.href = "admin/crud-usuarios"
-        } else if (this.usuario.rol_activo == 2) {
-          window.location.href = "jefe/elegir-proyecto"
-        } else if (this.usuario.rol_activo == 3) {
-          window.location.href = "user/elegir-proyecto"
-        }
+        // if (this.usuario.rol_activo == 1) {
+        //   window.location.href = ""
+        // } else if (this.usuario.rol_activo == 2) {
+        //   window.location.href = ""
+        // } else if (this.usuario.rol_activo == 3) {
+        //   window.location.href = ""
+        // }
       },
       error: e => {
         this.toastr.error('Datos de inicio de sesión incorrectos.', 'Error')
