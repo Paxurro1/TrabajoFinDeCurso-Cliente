@@ -17,8 +17,8 @@ export class FaltaService {
     return this.http.post(url, datos, { headers: headers });
   }
 
-  public getProfesores() {
-    let url: string = this.ruta + 'getProfesores';
+  public getProfesores(email: string) {
+    let url: string = this.ruta + 'getProfesores/'+email;
     return this.http.get<profesorResponse>(url);
   }
 

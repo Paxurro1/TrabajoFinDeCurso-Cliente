@@ -50,6 +50,9 @@
                   <option value="primera">Primera</option>
                   <option value="segunda">Segunda</option>
                   <option value="tercera">Tercera</option>
+                  <option value="tercera">Cuarta</option>
+                  <option value="tercera">Quinta</option>
+                  <option value="tercera">Sexta</option>
                 </select>
               </div>
               <div *ngIf="submitted && ausencias.controls[i].get('hora')?.errors?.['required']">
@@ -92,9 +95,7 @@
               </div>
               <div class="col-8">
                 <select [attr.id]="'profesor' + i" formControlName="profesor" class="form-select">
-                  <option value="primera">Primera</option>
-                  <option value="segunda">Segunda</option>
-                  <option value="tercera">Tercera</option>
+                  <option *ngFor="let profesor of profesores" [value]="profesor.email">{{profesor.nombre}} {{profesor.apellidos}}</option>
                 </select>
               </div>
               <div *ngIf="submitted && ausencias.controls[i].get('profesor')?.errors?.['required']">

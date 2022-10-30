@@ -12,6 +12,7 @@ import { LoginStorageUserService } from 'src/app/services/login.storageUser.serv
 })
 export class AddFaltaComponent implements OnInit {
 
+  public profesores: any = [];
   falta: FormGroup;
   usuario?: Usuario;
   submitted: boolean = false;
@@ -31,24 +32,7 @@ export class AddFaltaComponent implements OnInit {
       motivo: ['', Validators.compose([
         Validators.required, Validators.minLength(5), Validators.maxLength(50)])
       ],
-      // hora: ['', Validators.compose([
-      //   Validators.required])
-      // ],
-      // aula: ['', Validators.compose([
-      //   Validators.required])
-      // ],
-      // grupo: ['', Validators.compose([
-      //   Validators.required])
-      // ],
-      // profesor: ['', Validators.compose([
-      //   Validators.required])
-      // ],
-      // actividades: ['', Validators.compose([
-      //   Validators.required, Validators.minLength(5), Validators.maxLength(100)])
-      // ],
-      ausencias: this.formBuilder.array([
-        // this.formBuilder.control('', [Validators.required])
-      ]),
+      ausencias: this.formBuilder.array([]),
     },
       {
         validator: [this.mayorQueHoy]
@@ -57,6 +41,7 @@ export class AddFaltaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getProfesores();
     const ausenciaFormGroup = this.formBuilder.group({
       hora: new FormControl('', [Validators.required]),
       aula: new FormControl('', [Validators.required]),
@@ -69,6 +54,13 @@ export class AddFaltaComponent implements OnInit {
 
   get ausencias(){
     return this.falta.get('ausencias') as FormArray;
+  }
+
+  getProfesores() {
+    this.faltasService.getProfesores(this.usuario!.email).subscribe((response) => {
+      this.profesores = response;
+      console.log(this.profesores);
+    });
   }
 
   mayorQueHoy(control: AbstractControl) {
@@ -118,9 +110,6 @@ export class AddFaltaComponent implements OnInit {
       actividades: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(250)]),
     })
     this.ausencias.push(ausenciaFormGroup);
-    // this.ausencias.push(this.formBuilder.array([
-    //   this.formBuilder.control('', [Validators.required])
-    // ]));
   }
 
   public deleteAusencia() {
