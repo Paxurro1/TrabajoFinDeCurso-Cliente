@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { usuarioResponse } from '../models/usuarioRespose';
+import { profesorResponse } from '../models/profesorRespose';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,11 @@ export class FaltaService {
       'Content-Type': 'application/json',
     });
     return this.http.post(url, datos, { headers: headers });
+  }
+
+  public getProfesores() {
+    let url: string = this.ruta + 'getProfesores';
+    return this.http.get<profesorResponse>(url);
   }
 
 

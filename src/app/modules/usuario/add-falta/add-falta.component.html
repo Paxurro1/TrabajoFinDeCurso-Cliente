@@ -36,112 +36,25 @@
           </div>
         </div>
       </div>
-      <div class="mb-1 col-12 border border-dark">
+      <div class="mb-1 col-12 border border-dark" formArrayName="ausencias"
+        *ngFor="let ausencia of ausencias.controls; let i = index">
         <h2 class="h4"><strong>Ausencia</strong></h2>
-        <div class="row">
-          <div class="col-12 col-sm-4">
-            <div class="row">
-              <div class="col-4">
-                <label for="hora" class="pr-3"><strong>Hora:</strong></label>
-              </div>
-              <div class="col-8">
-                <select name="hora" id="hora" formControlName="hora" class="form-select">
-                  <option value="primera">Primera</option>
-                  <option value="segunda">Segunda</option>
-                  <option value="tercera">Tercera</option>
-                </select>
-              </div>
-              <div *ngIf="submitted && formulario['hora'].errors">
-                <div *ngIf="formulario['hora'].errors['required']"
-                  class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Tienes que elegir una hora.
-                </div>
-              </div>
-              <div class="col-4">
-                <label for="aula" class="pr-3"><strong>Aula:</strong></label>
-              </div>
-              <div class="col-8">
-                <select name="aula" id="aula" formControlName="aula" class="form-select">
-                  <option value="423">423</option>
-                  <option value="666">666</option>
-                  <option value="555">555</option>
-                </select>
-              </div>
-              <div *ngIf="submitted && formulario['aula'].errors">
-                <div *ngIf="formulario['aula'].errors['required']"
-                  class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Tienes que elegir una aula.
-                </div>
-              </div>
-              <div class="col-4">
-                <label for="grupo" class="pr-3"><strong>Grupo:</strong></label>
-              </div>
-              <div class="col-8">
-                <select name="grupo" id="grupo" formControlName="grupo" class="form-select">
-                  <option value="primera">Primera</option>
-                  <option value="segunda">Segunda</option>
-                  <option value="tercera">Tercera</option>
-                </select>
-              </div>
-              <div *ngIf="submitted && formulario['grupo'].errors">
-                <div *ngIf="formulario['grupo'].errors['required']"
-                  class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Tienes que elegir un grupo.
-                </div>
-              </div>
-              <div class="col-4">
-                <label for="profesor" class="pr-3"><strong>Profesor:</strong></label>
-              </div>
-              <div class="col-8">
-                <select name="profesor" id="profesor" formControlName="profesor" class="form-select">
-                  <option value="primera">Primera</option>
-                  <option value="segunda">Segunda</option>
-                  <option value="tercera">Tercera</option>
-                </select>
-              </div>
-              <div *ngIf="submitted && formulario['profesor'].errors">
-                <div *ngIf="formulario['profesor'].errors['required']"
-                  class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Tienes que elegir un
-                  profesor.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-sm-8">
-            <label for="actividades" class="pr-3"><strong>Actividades:</strong></label>
-            <textarea class="form-control" formControlName="actividades" name="actividades" id="actividades"
-              rows="4"></textarea>
-            <div *ngIf="submitted && formulario['actividades'].errors">
-              <div *ngIf="formulario['actividades'].errors['required']"
-                class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Tienes que poner una
-                actividad.
-              </div>
-              <div *ngIf="formulario['actividades'].errors['minlength']"
-                class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Mínimo 5 carácteres.
-              </div>
-              <div *ngIf="formulario['actividades'].errors['maxlength']"
-                class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Máximo 100 carácteres.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button *ngIf="formulario2 == false" (click)="addAusencia()" class="btn btn-success col-6 col-sm-3 mb-2">Añadir ausencia</button>
-      <div class="mb-1 col-12 border border-dark" formArrayName="ausencias" *ngFor="let ausencia of ausencias.controls; let i = index">
-        <h2 class="h4"><strong>Ausencia</strong></h2>
-        <div class="row" [formGroupName]="i">
+        <div class="row mb-2" [formGroupName]="i">
           <div class="col-12 col-sm-4">
             <div class="row">
               <div class="col-4">
                 <label [attr.for]="'hora' + i" class="pr-3"><strong>Hora:</strong></label>
               </div>
               <div class="col-8">
-                <select [attr.id]="'hora' + i" formControlName="hora2" class="form-select">
+                <select [attr.id]="'hora' + i" formControlName="hora" class="form-select">
                   <option value="primera">Primera</option>
                   <option value="segunda">Segunda</option>
                   <option value="tercera">Tercera</option>
                 </select>
               </div>
-              <div *ngIf="submitted && formulario['hora2'].errors">
-                <div *ngIf="formulario['hora2'].errors['required']"
-                  class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Tienes que elegir una hora.
+              <div *ngIf="submitted && ausencias.controls[i].get('hora')?.errors?.['required']">
+                <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
+                  Tienes que elegir una hora.
                 </div>
               </div>
               <div class="col-4">
@@ -154,9 +67,9 @@
                   <option value="555">555</option>
                 </select>
               </div>
-              <div *ngIf="submitted && formulario['aula'].errors">
-                <div *ngIf="formulario['aula'].errors['required']"
-                  class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Tienes que elegir una aula.
+              <div *ngIf="submitted && ausencias.controls[i].get('aula')?.errors?.['required']">
+                <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
+                  Tienes que elegir una aula.
                 </div>
               </div>
               <div class="col-4">
@@ -169,49 +82,55 @@
                   <option value="tercera">Tercera</option>
                 </select>
               </div>
-              <div *ngIf="submitted && formulario['grupo'].errors">
-                <div *ngIf="formulario['grupo'].errors['required']"
-                  class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Tienes que elegir un grupo.
+              <div *ngIf="submitted && ausencias.controls[i].get('grupo')?.errors?.['required']">
+                <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
+                  Tienes que elegir un grupo.
                 </div>
               </div>
               <div class="col-4">
-                <label [attr.for]="'porfesor' + i" class="pr-3"><strong>Profesor:</strong></label>
+                <label [attr.for]="'profesor' + i" class="pr-3"><strong>Profesor:</strong></label>
               </div>
               <div class="col-8">
-                <select [attr.id]="'porfesor' + i" formControlName="profesor" class="form-select">
+                <select [attr.id]="'profesor' + i" formControlName="profesor" class="form-select">
                   <option value="primera">Primera</option>
                   <option value="segunda">Segunda</option>
                   <option value="tercera">Tercera</option>
                 </select>
               </div>
-              <div *ngIf="submitted && formulario['profesor'].errors">
-                <div *ngIf="formulario['profesor'].errors['required']"
-                  class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Tienes que elegir un
-                  profesor.
+              <div *ngIf="submitted && ausencias.controls[i].get('profesor')?.errors?.['required']">
+                <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
+                  Tienes que elegir un profesor.
                 </div>
               </div>
             </div>
           </div>
           <div class="col-12 col-sm-8">
             <label [attr.for]="'actividades' + i" class="pr-3"><strong>Actividades:</strong></label>
-            <textarea class="form-control" formControlName="actividades" name="actividades2" [attr.id]="'actividades' + i"
-              rows="4"></textarea>
-            <div *ngIf="submitted && formulario['actividades'].errors">
-              <div *ngIf="formulario['actividades'].errors['required']"
-                class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Tienes que poner una
-                actividad.
+            <textarea class="form-control" formControlName="actividades" name="actividades2"
+              [attr.id]="'actividades' + i" rows="4">
+            </textarea>
+            <div *ngIf="submitted && ausencias.controls[i].get('actividades')?.errors?.['required']">
+              <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
+                Tienes que poner una actividad.
               </div>
-              <div *ngIf="formulario['actividades'].errors['minlength']"
-                class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Mínimo 5 carácteres.
+            </div>
+            <div *ngIf="submitted && ausencias.controls[i].get('actividades')?.errors?.['minlength']">
+              <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
+                Mínimo 5 carácteres.
               </div>
-              <div *ngIf="formulario['actividades'].errors['maxlength']"
-                class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Máximo 100 carácteres.
+            </div>
+            <div *ngIf="submitted && ausencias.controls[i].get('actividades')?.errors?.['maxlength']">
+              <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
+                Máximo 250 carácteres.
               </div>
             </div>
           </div>
         </div>
       </div>
-      <button *ngIf="formulario2 == true" (click)="deleteAusencia()" class="btn btn-danger col-6 col-sm-3 mb-2">Quitar ausencia</button>
+      <button *ngIf="formulario2 == false" (click)="addAusencia()" class="btn btn-success col-6 col-sm-3 mb-2">Añadir
+        ausencia</button>
+      <button *ngIf="formulario2 == true" (click)="deleteAusencia()" class="btn btn-danger col-6 col-sm-3 mb-2">Quitar
+        ausencia</button>
       <button type="submit" class="btn btn-primary" value="Registro">Añadir falta</button>
     </form>
   </div>

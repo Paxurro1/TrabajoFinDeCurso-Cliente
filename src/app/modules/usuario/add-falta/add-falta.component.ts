@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Usuario } from 'src/app/models/usuario';
 import { FaltaService } from 'src/app/services/falta.service';
+import { LoginStorageUserService } from 'src/app/services/login.storageUser.service';
 
 @Component({
   selector: 'app-add-falta',
@@ -11,6 +13,7 @@ import { FaltaService } from 'src/app/services/falta.service';
 export class AddFaltaComponent implements OnInit {
 
   falta: FormGroup;
+  usuario?: Usuario;
   submitted: boolean = false;
   formulario2: boolean = false;
 
@@ -18,7 +21,9 @@ export class AddFaltaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private faltasService: FaltaService,
+    private storageUser: LoginStorageUserService,
   ) {
+    this.usuario = storageUser.getUser();
     this.falta = this.formBuilder.group({
       f_ausencia: ['', Validators.compose([
         Validators.required])
@@ -26,37 +31,24 @@ export class AddFaltaComponent implements OnInit {
       motivo: ['', Validators.compose([
         Validators.required, Validators.minLength(5), Validators.maxLength(50)])
       ],
-      hora: ['', Validators.compose([
-        Validators.required])
-      ],
-      aula: ['', Validators.compose([
-        Validators.required])
-      ],
-      grupo: ['', Validators.compose([
-        Validators.required])
-      ],
-      profesor: ['', Validators.compose([
-        Validators.required])
-      ],
-      actividades: ['', Validators.compose([
-        Validators.required, Validators.minLength(5), Validators.maxLength(100)])
-      ],
-      hora2: ['', Validators.compose([
-        Validators.required])
-      ],
-      aula2: ['', Validators.compose([
-        Validators.required])
-      ],
-      grupo2: ['', Validators.compose([
-        Validators.required])
-      ],
-      profesor2: ['', Validators.compose([
-        Validators.required])
-      ],
-      actividades2: ['', Validators.compose([
-        Validators.required, Validators.minLength(5), Validators.maxLength(100)])
-      ],
-      ausencias: this.formBuilder.array([]),
+      // hora: ['', Validators.compose([
+      //   Validators.required])
+      // ],
+      // aula: ['', Validators.compose([
+      //   Validators.required])
+      // ],
+      // grupo: ['', Validators.compose([
+      //   Validators.required])
+      // ],
+      // profesor: ['', Validators.compose([
+      //   Validators.required])
+      // ],
+      // actividades: ['', Validators.compose([
+      //   Validators.required, Validators.minLength(5), Validators.maxLength(100)])
+      // ],
+      ausencias: this.formBuilder.array([
+        // this.formBuilder.control('', [Validators.required])
+      ]),
     },
       {
         validator: [this.mayorQueHoy]
@@ -65,6 +57,14 @@ export class AddFaltaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const ausenciaFormGroup = this.formBuilder.group({
+      hora: new FormControl('', [Validators.required]),
+      aula: new FormControl('', [Validators.required]),
+      grupo: new FormControl('', [Validators.required]),
+      profesor: new FormControl('', [Validators.required]),
+      actividades: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(250)]),
+    })
+    this.ausencias.push(ausenciaFormGroup);
   }
 
   get ausencias(){
@@ -82,24 +82,16 @@ export class AddFaltaComponent implements OnInit {
   }
 
   onSubmit() {
+
     this.submitted = true;
     if (!this.falta.valid) {
       return;
     }
     var datos = {
-      'f_ausencia': this.falta.value.descripcion,
-      'motivo': this.falta.value.dificultad,
-      'hora': this.falta.value.hora,
-      'aula': this.falta.value.aula,
-      'grupo': this.falta.value.grupo,
-      'profesor': this.falta.value.profesor,
-      'actividades': this.falta.value.actividades,
-      'hora2': this.falta.value.hora2,
-      'aula2': this.falta.value.aula2,
-      'grupo2': this.falta.value.grupo2,
-      'profesor2': this.falta.value.profesor2,
-      'actividades2': this.falta.value.actividades2,
-      // 'ausencias': this.falta.value.ausencias
+      'email': this.usuario?.email,
+      'f_ausencia': this.falta.value.f_ausencia,
+      'motivo': this.falta.value.motivo,
+      'ausencias': this.falta.value.ausencias
     }
     console.log(datos)
 
@@ -118,28 +110,21 @@ export class AddFaltaComponent implements OnInit {
 
   public addAusencia() {
     this.formulario2 = true;
-    // const ausenciaFormGroup = this.formBuilder.group({
-    //   hora: ['', Validators.compose([
-    //     Validators.required])
-    //   ],
-    //   aula: ['', Validators.compose([
-    //     Validators.required])
-    //   ],
-    //   grupo: ['', Validators.compose([
-    //     Validators.required])
-    //   ],
-    //   profesor: ['', Validators.compose([
-    //     Validators.required])
-    //   ],
-    //   actividades: ['', Validators.compose([
-    //     Validators.required, Validators.minLength(5), Validators.maxLength(100)])
-    //   ],
-    // })
-    // this.ausencias.push(ausenciaFormGroup);
+    const ausenciaFormGroup = this.formBuilder.group({
+      hora: new FormControl('', [Validators.required]),
+      aula: new FormControl('', [Validators.required]),
+      grupo: new FormControl('', [Validators.required]),
+      profesor: new FormControl('', [Validators.required]),
+      actividades: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(250)]),
+    })
+    this.ausencias.push(ausenciaFormGroup);
+    // this.ausencias.push(this.formBuilder.array([
+    //   this.formBuilder.control('', [Validators.required])
+    // ]));
   }
 
   public deleteAusencia() {
-    // this.ausencias.removeAt(this.ausencias.length - 1)
+    this.ausencias.removeAt(this.ausencias.length - 1)
     this.formulario2 = false;
   }
 
