@@ -12,11 +12,13 @@ import { LoginStorageUserService } from 'src/app/services/login.storageUser.serv
 })
 export class AddFaltaComponent implements OnInit {
 
-  public profesores: any = [];
+  aulas: any = [];
+  grupos: any = [];
+  profesores: any = [];
   falta: FormGroup;
   usuario?: Usuario;
   submitted: boolean = false;
-  formulario2: boolean = false;
+  formularios: number = 1;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,6 +44,8 @@ export class AddFaltaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProfesores();
+    this.getAulas();
+    this.getGrupos();
     const ausenciaFormGroup = this.formBuilder.group({
       hora: new FormControl('', [Validators.required]),
       aula: new FormControl('', [Validators.required]),
@@ -59,7 +63,21 @@ export class AddFaltaComponent implements OnInit {
   getProfesores() {
     this.faltasService.getProfesores(this.usuario!.email).subscribe((response) => {
       this.profesores = response;
-      console.log(this.profesores);
+      //console.log(this.profesores);
+    });
+  }
+
+  getAulas() {
+    this.faltasService.getAulas().subscribe((response) => {
+      this.aulas = response;
+      //console.log(this.aulas);
+    });
+  }
+
+  getGrupos() {
+    this.faltasService.getGrupos().subscribe((response) => {
+      this.grupos = response;
+      //console.log(this.grupos);
     });
   }
 
@@ -87,21 +105,20 @@ export class AddFaltaComponent implements OnInit {
     }
     console.log(datos)
 
-    // this.faltasService.addFalta(datos).subscribe({
-    //   next: (res) => {
-    //     this.toastr.success('Tarea registrada.', 'Registro');
-    //   },
-    //   error: e => {
-    //     console.log(e);
-    //     this.toastr.error('La tarea no ha podido registrarse.', 'Error');
-    //   }
-    // })
-    // console.log(datos);
-    this.onReset();
+    this.faltasService.addFalta(datos).subscribe({
+      next: (res) => {
+        this.toastr.success('Falta registrada.', 'Registro');
+      },
+      error: e => {
+        console.log(e);
+        this.toastr.error('La falta no ha podido registrarse.', 'Error');
+      }
+    })
+    // this.onReset();
   }
 
   public addAusencia() {
-    this.formulario2 = true;
+    this.formularios ++;
     const ausenciaFormGroup = this.formBuilder.group({
       hora: new FormControl('', [Validators.required]),
       aula: new FormControl('', [Validators.required]),
@@ -112,9 +129,9 @@ export class AddFaltaComponent implements OnInit {
     this.ausencias.push(ausenciaFormGroup);
   }
 
-  public deleteAusencia() {
-    this.ausencias.removeAt(this.ausencias.length - 1)
-    this.formulario2 = false;
+  public deleteAusencia(i: number) {
+    this.ausencias.removeAt(i)
+    this.formularios --;
   }
 
   get formulario() {

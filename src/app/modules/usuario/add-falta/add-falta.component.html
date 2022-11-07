@@ -50,9 +50,9 @@
                   <option value="primera">Primera</option>
                   <option value="segunda">Segunda</option>
                   <option value="tercera">Tercera</option>
-                  <option value="tercera">Cuarta</option>
-                  <option value="tercera">Quinta</option>
-                  <option value="tercera">Sexta</option>
+                  <option value="cuarta">Cuarta</option>
+                  <option value="quinta">Quinta</option>
+                  <option value="sexta">Sexta</option>
                 </select>
               </div>
               <div *ngIf="submitted && ausencias.controls[i].get('hora')?.errors?.['required']">
@@ -65,9 +65,7 @@
               </div>
               <div class="col-8">
                 <select [attr.id]="'aula' + i" formControlName="aula" class="form-select">
-                  <option value="423">423</option>
-                  <option value="666">666</option>
-                  <option value="555">555</option>
+                  <option *ngFor="let aula of aulas" [value]="aula.nombre">{{aula.nombre}}</option>
                 </select>
               </div>
               <div *ngIf="submitted && ausencias.controls[i].get('aula')?.errors?.['required']">
@@ -80,9 +78,7 @@
               </div>
               <div class="col-8">
                 <select [attr.id]="'grupo' + i" formControlName="grupo" class="form-select">
-                  <option value="primera">Primera</option>
-                  <option value="segunda">Segunda</option>
-                  <option value="tercera">Tercera</option>
+                  <option *ngFor="let grupo of grupos" [value]="grupo.nombre">{{grupo.nombre}}</option>
                 </select>
               </div>
               <div *ngIf="submitted && ausencias.controls[i].get('grupo')?.errors?.['required']">
@@ -127,11 +123,13 @@
             </div>
           </div>
         </div>
+        <button type="button" *ngIf="formularios > 1" (click)="deleteAusencia(i)" class="btn btn-danger col-6 col-sm-3 mb-2">Quitar
+          ausencia
+        </button>
       </div>
-      <button *ngIf="formulario2 == false" (click)="addAusencia()" class="btn btn-success col-6 col-sm-3 mb-2">Añadir
-        ausencia</button>
-      <button *ngIf="formulario2 == true" (click)="deleteAusencia()" class="btn btn-danger col-6 col-sm-3 mb-2">Quitar
-        ausencia</button>
+      <button type="button" *ngIf="formularios < 6" (click)="addAusencia()" class="btn btn-success col-6 col-sm-3 mb-2">Añadir
+        ausencia
+      </button>
       <button type="submit" class="btn btn-primary" value="Registro">Añadir falta</button>
     </form>
   </div>

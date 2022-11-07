@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { profesorResponse } from '../models/profesorRespose';
+import { aulaResponse } from '../models/aulaRespose';
+import { grupoResponse } from '../models/grupoRespose';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,16 @@ export class FaltaService {
   public getProfesores(email: string) {
     let url: string = this.ruta + 'getProfesores/'+email;
     return this.http.get<profesorResponse>(url);
+  }
+
+  public getAulas() {
+    let url: string = this.ruta + 'getAulas';
+    return this.http.get<aulaResponse>(url);
+  }
+
+  public getGrupos() {
+    let url: string = this.ruta + 'getGrupos';
+    return this.http.get<grupoResponse>(url);
   }
 
 
