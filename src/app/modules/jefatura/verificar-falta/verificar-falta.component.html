@@ -1,0 +1,61 @@
+<ng-container *ngIf="ausencias.length == 0">
+  <div class="row">
+    <div class="d-flex justify-content-between pb-3">
+      <h1 class="h2">Sin tareas para evaluar</h1>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="ausencias.length > 0">
+  <div class="row">
+    <div class="d-flex justify-content-between pb-3">
+      <h1 class="h2">Tareas para evaluar</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 formulario">
+      <div class="mb-1 col-12 border border-dark" *ngFor="let ausencia of ausencias; let i = index">
+        <div class="row m-2 mt-2">
+          <div class="col-12 col-sm-4">
+            <div class="row">
+              <div class="col-4">
+                <label class="form-label" [attr.for]="'hora' + i" class="pr-3"><strong>Hora:</strong></label>
+              </div>
+              <div class="col-8">
+                <input readonly class="form-control" type="text" [attr.id]="'hora' + i" [value]="ausencia.hora">
+              </div>
+              <div class="col-4">
+                <label [attr.for]="'aula' + i" class="pr-3"><strong>Aula:</strong></label>
+              </div>
+              <div class="col-8">
+                <input readonly class="form-control" type="text" [attr.id]="'aula' + i" [value]="ausencia.aula">
+              </div>
+              <div class="col-4">
+                <label [attr.for]="'grupo' + i" class="pr-3"><strong>Grupo:</strong></label>
+              </div>
+              <div class="col-8">
+                <input readonly class="form-control" type="text" [attr.id]="'grupo' + i" [value]="ausencia.grupo">
+              </div>
+              <div class="col-4">
+                <label [attr.for]="'profesor' + i" class="pr-3"><strong>Profesor:</strong></label>
+              </div>
+              <div class="col-8">
+                <input class="form-control" type="text" [attr.id]="'profesor' + i" [value]="ausencia.suplente">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-8">
+            <label [attr.for]="'actividades' + i" class="pr-3"><strong>Actividades:</strong></label>
+            <textarea readonly class="form-control" name="actividades2" [attr.id]="'actividades' + i" rows="4">{{ausencia.actividades}}
+            </textarea>
+          </div>
+        </div>
+        <button type="button" (click)="aprobarTarea(i, ausencia.id)" class="btn btn-success col-6 col-sm-6 mb-2">Aprobar
+          tarea
+        </button>
+        <button type="button" (click)="rechazarTarea(i, ausencia.id)" class="btn btn-danger col-6 col-sm-6 mb-2">Rechazar
+          tarea
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>

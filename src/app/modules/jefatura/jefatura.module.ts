@@ -2,13 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { JefaturaRoutingModule } from './jefatura-routing.module';
+import { VerificarFaltaComponent } from './verificar-falta/verificar-falta.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    VerificarFaltaComponent
+  ],
   imports: [
     CommonModule,
-    JefaturaRoutingModule
+    JefaturaRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class JefaturaModule { }

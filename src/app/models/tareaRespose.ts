@@ -1,0 +1,9 @@
+export interface tareaResponse {
+  id: number,
+  hora: string,
+  aula: string,
+  grupo: string,
+  suplente: string,
+  actividades: string,
+  estado: number,
+}

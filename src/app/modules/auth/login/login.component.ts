@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
         if (this.usuario.rol_activo == 1) {
           window.location.href = "usuario/add-falta"
         } else if (this.usuario.rol_activo == 2) {
-          window.location.href = "usuario/add-falta"
+          window.location.href = "jefatura/verificar-falta"
         } else if (this.usuario.rol_activo == 3) {
           window.location.href = "usuario/add-falta"
         }
