@@ -114,7 +114,7 @@ export class AddFaltaComponent implements OnInit {
         this.toastr.error('La falta no ha podido registrarse.', 'Error');
       }
     })
-    // this.onReset();
+    this.onReset();
   }
 
   public addAusencia() {

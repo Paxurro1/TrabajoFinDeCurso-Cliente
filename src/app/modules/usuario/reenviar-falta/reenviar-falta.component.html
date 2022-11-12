@@ -1,0 +1,73 @@
+<ng-container *ngIf="tareas.length == 0">
+  <div class="row">
+    <div class="d-flex justify-content-between pb-3">
+      <h1 class="h2">No tienes ninguna tarea rechazada</h1>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="tareas.length > 0">
+  <div class="row">
+    <div class="d-flex justify-content-between pb-3">
+      <h1 class="h2">Tareas rechazadas</h1>
+    </div>
+  </div>
+  <div class="row">
+    <form class="col-12 formulario" [formGroup]="falta" (ngSubmit)="onSubmit()">
+      <div class="mb-1 col-12 border border-dark" *ngFor="let ausencia of tareas; let i = index"
+        formArrayName="ausencias">
+        <div class="row m-2 mt-2" [formGroupName]="i">
+          <div class="col-12 col-sm-4">
+            <div class="row">
+              <div class="col-4">
+                <label class="form-label" [attr.for]="'hora' + i" class="pr-3"><strong>Hora:</strong></label>
+              </div>
+              <div class="col-8">
+                <input readonly class="form-control" type="text" formControlName="hora" [attr.id]="'hora' + i">
+              </div>
+              <div class="col-4">
+                <label [attr.for]="'aula' + i" class="pr-3"><strong>Aula:</strong></label>
+              </div>
+              <div class="col-8">
+                <input readonly class="form-control" type="text" formControlName="aula" [attr.id]="'aula' + i">
+              </div>
+              <div class="col-4">
+                <label [attr.for]="'grupo' + i" class="pr-3"><strong>Grupo:</strong></label>
+              </div>
+              <div class="col-8">
+                <input readonly class="form-control" type="text" formControlName="grupo" [attr.id]="'grupo' + i">
+              </div>
+              <div class="col-4">
+                <label [attr.for]="'profesor' + i" class="pr-3"><strong>Profesor:</strong></label>
+              </div>
+              <div class="col-8">
+                <input readonly class="form-control" type="text" formControlName="profesor" [attr.id]="'profesor' + i">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-8">
+            <label [attr.for]="'actividades' + i" class="pr-3"><strong>Actividades:</strong></label>
+            <textarea class="form-control" name="actividades2" formControlName="actividades" [attr.id]="'actividades' + i"
+              rows="4">
+            </textarea>
+            <div *ngIf="submitted && ausencias.controls[i].get('actividades')?.errors?.['required']">
+              <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
+                Tienes que poner una actividad.
+              </div>
+            </div>
+            <div *ngIf="submitted && ausencias.controls[i].get('actividades')?.errors?.['minlength']">
+              <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
+                Mínimo 5 carácteres.
+              </div>
+            </div>
+            <div *ngIf="submitted && ausencias.controls[i].get('actividades')?.errors?.['maxlength']">
+              <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
+                Máximo 250 carácteres.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary col-12" value="Registro">Enviar faltas revisadas</button>
+    </form>
+  </div>
+</ng-container>

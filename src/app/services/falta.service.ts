@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { profesorResponse } from '../models/profesorRespose';
 import { aulaResponse } from '../models/aulaRespose';
 import { grupoResponse } from '../models/grupoRespose';
+import { tareaResponse } from '../models/tareaRespose';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,22 @@ export class FaltaService {
     return this.http.get<grupoResponse>(url);
   }
 
+  public getTareasRechazadas(email: string) {
+    let url: string = this.ruta + 'getTareasRechazadas/'+email;
+    return this.http.get<tareaResponse[]>(url);
+  }
+
+  public reenviarFaltas(datos: object) {
+    let url: string = this.ruta + "reenviarFaltas";
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post(url, datos, { headers: headers });
+  }
+
+  public getTareasAprobadas(email: string) {
+    let url: string = this.ruta + 'getTareasAprobadas/'+email;
+    return this.http.get<tareaResponse[]>(url);
+  }
 
 }

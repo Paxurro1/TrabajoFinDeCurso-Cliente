@@ -2,11 +2,26 @@
   <nav id="sidebarMenu">
     <div class="position-sticky pt-4">
       <ul class="nav nav-pills flex-column">
-        <!-- <li *ngIf="usuario.rol_activo == 1">
-          <a class="nav-link link-white" routerLinkActive="active" routerLink="admin/crud-usuarios"
-            aria-current="page">Gestionar usuarios
+        <li *ngIf="usuario.rol_activo == 2">
+          <a class="nav-link link-white" routerLinkActive="active" routerLink="jefatura/verificar-falta"
+            aria-current="page">Verificar faltas
           </a>
-        </li> -->
+        </li>
+        <li *ngIf="usuario.rol_activo == 3">
+          <a class="nav-link link-white" routerLinkActive="active" routerLink="usuario/add-falta"
+            aria-current="page">Añadir falta
+          </a>
+        </li>
+        <li *ngIf="usuario.rol_activo == 3">
+          <a class="nav-link link-white" routerLinkActive="active" routerLink="usuario/reenviar-falta"
+            aria-current="page">Faltas no admitidas
+          </a>
+        </li>
+        <li *ngIf="usuario.rol_activo == 3">
+          <a class="nav-link link-white" routerLinkActive="active" routerLink="usuario/ver-falta"
+            aria-current="page">Ver faltas
+          </a>
+        </li>
       </ul>
     </div>
   </nav>

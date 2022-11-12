@@ -32,14 +32,16 @@ export class VerificarFaltaComponent implements OnInit {
   public aprobarTarea(i: number, id: number) {
     this.ausencias.splice(i,1)
     this.verificarService.aprobarTarea(id).subscribe((response) => {
-      console.log(this.ausencias);
+      //console.log(this.ausencias);
+      this.toastr.success('Falta aprobada.', 'Aprobada');
     });
   }
 
   public rechazarTarea(i: number, id: number) {
     this.ausencias.splice(i,1)
     this.verificarService.rechazarTarea(id).subscribe((response) => {
-      console.log(this.ausencias);
+      //console.log(this.ausencias);
+      this.toastr.info('Falta rechazada.', 'Rechazada');
     });
   }
 
