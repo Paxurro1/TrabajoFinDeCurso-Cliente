@@ -108,6 +108,7 @@ export class AddFaltaComponent implements OnInit {
     this.faltasService.addFalta(datos).subscribe({
       next: (res) => {
         this.toastr.success('Falta registrada.', 'Registro');
+        console.log(res)
       },
       error: e => {
         console.log(e);
