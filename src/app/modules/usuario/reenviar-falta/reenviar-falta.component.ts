@@ -76,12 +76,12 @@ export class ReenviarFaltaComponent implements OnInit {
   public addAusencia(i: number) {
     while (i > 0) {
       const ausenciaFormGroup = this.formBuilder.group({
-        id: new FormControl(this.tareas[i-1].id),
-        hora: new FormControl(this.tareas[i-1].hora),
-        aula: new FormControl(this.tareas[i-1].aula),
-        grupo: new FormControl(this.tareas[i-1].grupo),
-        profesor: new FormControl(this.tareas[i-1].suplente),
-        actividades: new FormControl(this.tareas[i-1].actividades, [Validators.required, Validators.minLength(5), Validators.maxLength(250)]),
+        id: new FormControl(this.tareas[i - 1].id),
+        hora: new FormControl(this.tareas[i - 1].hora),
+        aula: new FormControl(this.tareas[i - 1].aula),
+        grupo: new FormControl(this.tareas[i - 1].grupo),
+        profesor: new FormControl(this.tareas[i - 1].suplente),
+        actividades: new FormControl(this.tareas[i - 1].actividades, [Validators.required, Validators.minLength(5), Validators.maxLength(250)]),
       })
       this.ausencias.push(ausenciaFormGroup);
       i--;

@@ -19,8 +19,8 @@ export class VerificarService {
     return this.http.get(url);
   }
 
-  public rechazarTarea(id: number) {
-    let url: string = this.ruta + 'rechazarTarea/' + id;
+  public rechazarTarea(id: number, motivo: string) {
+    let url: string = this.ruta + 'rechazarTarea/' + id + '/' + motivo;
     return this.http.get(url);
   }
 
