@@ -13,10 +13,17 @@
   </div>
   <div class="row">
     <form class="col-12 formulario" [formGroup]="falta">
-      <div class="mb-1 col-12 border border-dark" *ngFor="let ausencia of ausencias; let i = index" formArrayName="motivos">
+      <div class="mb-1 col-12 border border-dark" *ngFor="let ausencia of ausencias; let i = index"
+        formArrayName="motivos">
         <div class="row m-2 mt-2">
           <div class="col-12 col-sm-4">
             <div class="row">
+              <div class="col-4">
+                <label class="form-label" [attr.for]="'ausente' + i" class="pr-3"><strong>Ausente:</strong></label>
+              </div>
+              <div class="col-8">
+                <input readonly class="form-control" type="text" [attr.id]="'ausente' + i" [value]="ausencia.ausente">
+              </div>
               <div class="col-4">
                 <label class="form-label" [attr.for]="'hora' + i" class="pr-3"><strong>Hora:</strong></label>
               </div>
@@ -36,7 +43,7 @@
                 <input readonly class="form-control" type="text" [attr.id]="'grupo' + i" [value]="ausencia.grupo">
               </div>
               <div class="col-4">
-                <label [attr.for]="'profesor' + i" class="pr-3"><strong>Profesor:</strong></label>
+                <label [attr.for]="'profesor' + i" class="pr-3"><strong>Sustituto:</strong></label>
               </div>
               <div class="col-8">
                 <input class="form-control" type="text" [attr.id]="'profesor' + i" [value]="ausencia.suplente">

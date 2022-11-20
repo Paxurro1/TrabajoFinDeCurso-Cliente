@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tareaResponse } from '../models/tareaRespose';
+import { tareaEvaluarResponse } from '../models/tareaEvaluarRespose';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class VerificarService {
 
   public getTareasEvaluar() {
     let url: string = this.ruta + 'getTareasEvaluar';
-    return this.http.get<tareaResponse[]>(url);
+    return this.http.get<tareaEvaluarResponse[]>(url);
   }
 
   public aprobarTarea(id: number) {

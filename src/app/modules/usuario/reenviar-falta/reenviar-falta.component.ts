@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Tarea } from 'src/app/models/tarea';
+import { TareaRechazada } from 'src/app/models/tareaRechazada';
 import { Usuario } from 'src/app/models/usuario';
 import { FaltaService } from 'src/app/services/falta.service';
 import { LoginStorageUserService } from 'src/app/services/login.storageUser.service';
@@ -14,7 +15,10 @@ import { LoginStorageUserService } from 'src/app/services/login.storageUser.serv
 })
 export class ReenviarFaltaComponent implements OnInit {
 
-  tareas: Tarea[] = [];
+  aulas: any = [];
+  grupos: any = [];
+  profesores: any = [];
+  tareas: TareaRechazada[] = [];
   usuario?: Usuario;
   falta: FormGroup;
   submitted: boolean = false;
@@ -33,7 +37,31 @@ export class ReenviarFaltaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getProfesores();
+    this.getAulas();
+    this.getGrupos();
     this.getTareasRechazadas();
+  }
+
+  getProfesores() {
+    this.faltasService.getProfesores(this.usuario!.email).subscribe((response) => {
+      this.profesores = response;
+      //console.log(this.profesores);
+    });
+  }
+
+  getAulas() {
+    this.faltasService.getAulas().subscribe((response) => {
+      this.aulas = response;
+      //console.log(this.aulas);
+    });
+  }
+
+  getGrupos() {
+    this.faltasService.getGrupos().subscribe((response) => {
+      this.grupos = response;
+      //console.log(this.grupos);
+    });
   }
 
   get ausencias() {
@@ -41,7 +69,6 @@ export class ReenviarFaltaComponent implements OnInit {
   }
 
   onSubmit() {
-
     this.submitted = true;
     if (!this.falta.valid) {
       return;
@@ -49,7 +76,7 @@ export class ReenviarFaltaComponent implements OnInit {
     var datos = {
       'ausencias': this.falta.value.ausencias
     }
-    console.log(datos)
+    //console.log(datos)
     this.faltasService.reenviarFaltas(datos).subscribe({
       next: (res) => {
         this.toastr.success('Faltas actualizadas.', 'Registro');
@@ -61,7 +88,6 @@ export class ReenviarFaltaComponent implements OnInit {
         this.toastr.error('La falta no ha podido actualizarse.', 'Error');
       }
     })
-
   }
 
   getTareasRechazadas() {
@@ -70,7 +96,6 @@ export class ReenviarFaltaComponent implements OnInit {
       //console.log(this.tareas);
       this.addAusencia(this.tareas.length)
     });
-
   }
 
   public addAusencia(i: number) {
@@ -82,6 +107,7 @@ export class ReenviarFaltaComponent implements OnInit {
         grupo: new FormControl(this.tareas[i - 1].grupo),
         profesor: new FormControl(this.tareas[i - 1].suplente),
         actividades: new FormControl(this.tareas[i - 1].actividades, [Validators.required, Validators.minLength(5), Validators.maxLength(250)]),
+        motivo: new FormControl(this.tareas[i - 1].motivo),
       })
       this.ausencias.push(ausenciaFormGroup);
       i--;

@@ -5,6 +5,7 @@ import { aulaResponse } from '../models/aulaRespose';
 import { grupoResponse } from '../models/grupoRespose';
 import { tareaResponse } from '../models/tareaRespose';
 import { tareaAprobadaResponse } from '../models/tareaAprobadaRespose';
+import { tareaRechazadaResponse } from '../models/tarearechazadaRespose';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +39,7 @@ export class FaltaService {
 
   public getTareasRechazadas(email: string) {
     let url: string = this.ruta + 'getTareasRechazadas/'+email;
-    return this.http.get<tareaResponse[]>(url);
+    return this.http.get<tareaRechazadaResponse[]>(url);
   }
 
   public reenviarFaltas(datos: object) {

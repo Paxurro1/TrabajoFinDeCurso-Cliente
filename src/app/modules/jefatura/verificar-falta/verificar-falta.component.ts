@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ToastrService } from 'ngx-toastr';
-import { Tarea } from 'src/app/models/tarea';
 import { VerificarService } from 'src/app/services/verificar.service';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray, FormControl } from '@angular/forms';
+import { TareaEvaluar } from 'src/app/models/tareaEvaluar';
+import { FaltaService } from 'src/app/services/falta.service';
+import { LoginStorageUserService } from 'src/app/services/login.storageUser.service';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-verificar-falta',
@@ -12,14 +15,18 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, FormArray, FormCon
 })
 export class VerificarFaltaComponent implements OnInit {
 
-  ausencias: Tarea[] = [];
+  ausencias: TareaEvaluar[] = [];
   falta: FormGroup;
   submitted: boolean = false;
+  profesores: any = [];
+  usuario?: Usuario;
 
   constructor(
     private toastr: ToastrService,
     private verificarService: VerificarService,
     private formBuilder: FormBuilder,
+    private faltasService: FaltaService,
+    private storageUser: LoginStorageUserService,
   ) {
     this.falta = this.formBuilder.group({
       motivos: this.formBuilder.array([]),
@@ -29,6 +36,14 @@ export class VerificarFaltaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTareasEvaluar();
+    this.getProfesores();
+  }
+
+  getProfesores() {
+    this.faltasService.getProfesores(this.usuario!.email).subscribe((response) => {
+      this.profesores = response;
+      //console.log(this.profesores);
+    });
   }
 
   get motivos() {
