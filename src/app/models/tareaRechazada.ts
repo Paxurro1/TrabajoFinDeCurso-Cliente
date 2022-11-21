@@ -1,4 +1,4 @@
-import { tareaRechazadaResponse } from "./tarearechazadaRespose";
+import { tareaRechazadaResponse } from "./tareaRechazadaRespose";
 
 
 export class TareaRechazada {

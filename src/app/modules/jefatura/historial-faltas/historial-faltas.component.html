@@ -1,0 +1,67 @@
+<ng-container *ngIf="faltas.length == 0">
+  <div class="row">
+    <div class="d-flex justify-content-between pb-3">
+      <h1 class="h2">No hay faltas aún</h1>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="faltas.length > 0">
+  <div class="row">
+    <div class="d-flex justify-content-between pb-3">
+      <h1 class="h2">Horas a las que los profesores han faltado</h1>
+    </div>
+  </div>
+  <div class="col-12 formulario mb-1 col-12 border border-2 border-dark rounded"
+    *ngFor="let falta of faltas; let i = index">
+    <div class="row m-2 mt-2">
+      <div class="mb-3 col-12 col-sm-3">
+        <label [attr.for]="'ausente' + i" class="form-label"><strong>Ausente:</strong></label>
+        <input readonly type="text" class="form-control" [attr.id]="'ausente' + i"
+          [value]="falta.nombre + ' ' + falta.apellidos">
+      </div>
+      <div class="mb-3 col-12 col-sm-3">
+        <label [attr.for]="'dia' + i" class="form-label"><strong>Fecha de ausencia:</strong></label>
+        <input readonly type="date" class="form-control" [attr.id]="'dia' + i" [value]="falta.dia">
+      </div>
+      <div class="mb-3 col-12 col-sm-6 row">
+        <label [attr.for]="'motivo' + i" class="form-label"><strong>Motivo:</strong></label>
+        <input readonly type="text" class="form-control" [attr.id]="'motivo' + i" [value]="falta.motivo">
+      </div>
+      <div class="row mb-2" *ngFor="let tarea of falta.tareas; let i = index">
+        <div class="col-12 col-sm-4">
+          <div class="row">
+            <div class="col-4">
+              <label class="form-label" [attr.for]="'hora' + i" class="pr-3"><strong>Hora:</strong></label>
+            </div>
+            <div class="col-8">
+              <input readonly class="form-control" type="text" [attr.id]="'hora' + i" [value]="tarea.hora">
+            </div>
+            <div class="col-4">
+              <label [attr.for]="'aula' + i" class="pr-3"><strong>Aula:</strong></label>
+            </div>
+            <div class="col-8">
+              <input readonly class="form-control" type="text" [attr.id]="'aula' + i" [value]="tarea.aula">
+            </div>
+            <div class="col-4">
+              <label [attr.for]="'grupo' + i" class="pr-3"><strong>Grupo:</strong></label>
+            </div>
+            <div class="col-8">
+              <input readonly class="form-control" type="text" [attr.id]="'grupo' + i" [value]="tarea.grupo">
+            </div>
+            <div class="col-4">
+              <label [attr.for]="'profesor' + i" class="pr-3"><strong>Sustituto:</strong></label>
+            </div>
+            <div class="col-8">
+              <input readonly class="form-control" type="text" [attr.id]="'profesor' + i" [value]="tarea.suplente">
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-8">
+          <label [attr.for]="'actividades' + i" class="pr-3"><strong>Actividades:</strong></label>
+          <textarea readonly class="form-control" name="actividades2" [attr.id]="'actividades' + i"
+            rows="4">{{tarea.actividades}}</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

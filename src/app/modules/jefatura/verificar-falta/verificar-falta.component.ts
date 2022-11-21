@@ -19,14 +19,12 @@ export class VerificarFaltaComponent implements OnInit {
   falta: FormGroup;
   submitted: boolean = false;
   profesores: any = [];
-  usuario?: Usuario;
 
   constructor(
     private toastr: ToastrService,
     private verificarService: VerificarService,
     private formBuilder: FormBuilder,
     private faltasService: FaltaService,
-    private storageUser: LoginStorageUserService,
   ) {
     this.falta = this.formBuilder.group({
       motivos: this.formBuilder.array([]),
@@ -36,14 +34,6 @@ export class VerificarFaltaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTareasEvaluar();
-    this.getProfesores();
-  }
-
-  getProfesores() {
-    this.faltasService.getProfesores(this.usuario!.email).subscribe((response) => {
-      this.profesores = response;
-      //console.log(this.profesores);
-    });
   }
 
   get motivos() {

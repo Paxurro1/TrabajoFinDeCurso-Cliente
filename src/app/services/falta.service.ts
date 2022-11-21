@@ -5,7 +5,9 @@ import { aulaResponse } from '../models/aulaRespose';
 import { grupoResponse } from '../models/grupoRespose';
 import { tareaResponse } from '../models/tareaRespose';
 import { tareaAprobadaResponse } from '../models/tareaAprobadaRespose';
-import { tareaRechazadaResponse } from '../models/tarearechazadaRespose';
+import { tareaRechazadaResponse } from '../models/tareaRechazadaRespose';
+import { tareaEvaluarResponse } from '../models/tareaEvaluarRespose';
+import { faltaResponse } from '../models/faltaRespose';
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +55,11 @@ export class FaltaService {
   public getTareasAprobadas(email: string) {
     let url: string = this.ruta + 'getTareasAprobadas/'+email;
     return this.http.get<tareaAprobadaResponse[]>(url);
+  }
+
+  public getHistorialTareas() {
+    let url: string = this.ruta + 'getHistorialTareas';
+    return this.http.get<faltaResponse[]>(url);
   }
 
 }

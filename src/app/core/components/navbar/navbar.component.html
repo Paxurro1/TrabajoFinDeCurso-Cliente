@@ -22,6 +22,11 @@
             aria-current="page">Ver faltas
           </a>
         </li>
+        <li *ngIf="usuario.rol_activo == 2">
+          <a class="nav-link link-white" routerLinkActive="active" routerLink="jefatura/historial-faltas"
+            aria-current="page">Historial de faltas
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
