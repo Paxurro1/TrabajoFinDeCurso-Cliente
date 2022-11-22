@@ -11,8 +11,19 @@
       <h1 class="h2">Horas a las que los profesores han faltado</h1>
     </div>
   </div>
-  <div class="col-12 formulario mb-1 col-12 border border-2 border-dark rounded"
-    *ngFor="let falta of faltas; let i = index">
+  <div>
+    <strong>Faltas por página: </strong>
+    <select (change)="handlePageSizeChange($event)">
+      <option *ngFor="let size of pageSizes" [ngValue]="size">
+        {{ size }}
+      </option>
+    </select>
+  </div>
+  <div class="col-12 formulario mb-1 col-12 border border-2 border-dark rounded" *ngFor="let falta of faltas | paginate : {
+      itemsPerPage: pageSize,
+      currentPage: page,
+      totalItems: count
+    }; let i = index">
     <div class="row m-2 mt-2">
       <div class="mb-3 col-12 col-sm-3">
         <label [attr.for]="'ausente' + i" class="form-label"><strong>Ausente:</strong></label>
@@ -63,5 +74,10 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="col-md-12">
+    <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" [responsive]="true"
+      (pageChange)="handlePageChange($event)">
+    </pagination-controls>
   </div>
 </ng-container>

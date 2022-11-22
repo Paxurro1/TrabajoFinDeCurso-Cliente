@@ -10,6 +10,10 @@ import { FaltaService } from 'src/app/services/falta.service';
 export class HistorialFaltasComponent implements OnInit {
 
   faltas: faltaResponse[] = [];
+  page = 1;
+  count = 0;
+  pageSize = 2;
+  pageSizes = [1, 2, 3, 4, 5, 6];
 
   constructor(
     private faltasService: FaltaService,
@@ -24,6 +28,15 @@ export class HistorialFaltasComponent implements OnInit {
       this.faltas = response;
       console.log(this.faltas);
     });
+  }
+
+  handlePageChange(event: number): void {
+    this.page = event;
+  }
+
+  handlePageSizeChange(event: any): void {
+    this.pageSize = event.target.value;
+    this.page = 1;
   }
 
 }
