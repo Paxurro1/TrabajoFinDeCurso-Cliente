@@ -1,6 +1,6 @@
 <ng-container *ngIf="faltas.length == 0">
   <div class="row">
-    <div class="d-flex justify-content-between pb-3">
+      <div class="d-flex justify-content-between pb-3">
       <h1 class="h2">No hay faltas aún</h1>
     </div>
   </div>
@@ -11,13 +11,15 @@
       <h1 class="h2">Horas a las que los profesores han faltado</h1>
     </div>
   </div>
-  <div>
-    <strong>Faltas por página: </strong>
-    <select (change)="handlePageSizeChange($event)">
-      <option *ngFor="let size of pageSizes" [ngValue]="size">
-        {{ size }}
-      </option>
-    </select>
+  <div class="row">
+    <label for="cuantos" class="form-label"><strong>Faltas por página: </strong></label>
+    <div class="col-sm-4 col-12">
+      <select class="form-select" (change)="handlePageSizeChange($event)">
+        <option *ngFor="let size of pageSizes" [ngValue]="size">
+          {{ size }}
+        </option>
+      </select>
+    </div>
   </div>
   <div class="col-12 formulario mb-1 col-12 border border-2 border-dark rounded" *ngFor="let falta of faltas | paginate : {
       itemsPerPage: pageSize,
@@ -76,8 +78,6 @@
     </div>
   </div>
   <div class="col-md-12">
-    <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" [responsive]="true"
-      (pageChange)="handlePageChange($event)">
-    </pagination-controls>
+-controls>
   </div>
 </ng-container>
