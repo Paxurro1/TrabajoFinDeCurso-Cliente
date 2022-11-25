@@ -12,7 +12,7 @@ export class HistorialFaltasComponent implements OnInit {
   faltas: faltaResponse[] = [];
   page = 1;
   count = 0;
-  pageSize = 2;
+  pageSize = 1;
   pageSizes = [1, 2, 3, 4, 5, 6];
 
   constructor(

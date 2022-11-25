@@ -8,6 +8,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReenviarFaltaComponent } from './reenviar-falta/reenviar-falta.component';
 import { ElegirDiaComponent } from './elegir-dia/elegir-dia.component';
 import { VerGuardiasComponent } from './ver-guardias/ver-guardias.component';
+import { DataTablesModule } from 'angular-datatables';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { VerGuardiasComponent } from './ver-guardias/ver-guardias.component';
     UsuarioRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    DataTablesModule,
+    HttpClientModule,
   ]
 })
 export class UsuarioModule { }
