@@ -6,13 +6,17 @@ import { AddFaltaComponent } from './add-falta/add-falta.component';
 import { VerFaltaComponent } from './ver-falta/ver-falta.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReenviarFaltaComponent } from './reenviar-falta/reenviar-falta.component';
+import { ElegirDiaComponent } from './elegir-dia/elegir-dia.component';
+import { VerGuardiasComponent } from './ver-guardias/ver-guardias.component';
 
 
 @NgModule({
   declarations: [
     AddFaltaComponent,
     VerFaltaComponent,
-    ReenviarFaltaComponent
+    ReenviarFaltaComponent,
+    ElegirDiaComponent,
+    VerGuardiasComponent
   ],
   imports: [
     CommonModule,

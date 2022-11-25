@@ -8,6 +8,7 @@ import { tareaAprobadaResponse } from '../models/tareaAprobadaRespose';
 import { tareaRechazadaResponse } from '../models/tareaRechazadaRespose';
 import { tareaEvaluarResponse } from '../models/tareaEvaluarRespose';
 import { faltaResponse } from '../models/faltaRespose';
+import { guardiaResponse } from '../models/guardiaRespose';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class FaltaService {
   }
 
   public getProfesores(email: string) {
-    let url: string = this.ruta + 'getProfesores/'+email;
+    let url: string = this.ruta + 'getProfesores/' + email;
     return this.http.get<profesorResponse>(url);
   }
 
@@ -40,7 +41,7 @@ export class FaltaService {
   }
 
   public getTareasRechazadas(email: string) {
-    let url: string = this.ruta + 'getTareasRechazadas/'+email;
+    let url: string = this.ruta + 'getTareasRechazadas/' + email;
     return this.http.get<tareaRechazadaResponse[]>(url);
   }
 
@@ -53,13 +54,18 @@ export class FaltaService {
   }
 
   public getTareasAprobadas(email: string) {
-    let url: string = this.ruta + 'getTareasAprobadas/'+email;
+    let url: string = this.ruta + 'getTareasAprobadas/' + email;
     return this.http.get<tareaAprobadaResponse[]>(url);
   }
 
   public getHistorialTareas() {
     let url: string = this.ruta + 'getHistorialTareas';
     return this.http.get<faltaResponse[]>(url);
+  }
+
+  public getGuardias(fecha: Date) {
+    let url: string = this.ruta + 'getGuardias/' + fecha;
+    return this.http.get<guardiaResponse[]>(url);
   }
 
 }

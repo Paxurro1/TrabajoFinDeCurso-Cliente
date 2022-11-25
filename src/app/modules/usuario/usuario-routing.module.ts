@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddFaltaComponent } from './add-falta/add-falta.component';
 import { ReenviarFaltaComponent } from './reenviar-falta/reenviar-falta.component';
 import { VerFaltaComponent } from './ver-falta/ver-falta.component';
+import { ElegirDiaComponent } from './elegir-dia/elegir-dia.component';
+import { VerGuardiasComponent } from './ver-guardias/ver-guardias.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,14 @@ const routes: Routes = [
   {
     path:'ver-falta',
     component: VerFaltaComponent
+  },
+  {
+    path:'elegir-dia',
+    component: ElegirDiaComponent
+  },
+  {
+    path:'ver-guardias',
+    component: VerGuardiasComponent
   },
 ];
 
