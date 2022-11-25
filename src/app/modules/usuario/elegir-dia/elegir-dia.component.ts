@@ -6,6 +6,9 @@ import { ToastrService } from 'ngx-toastr';
 import { guardiaResponse } from 'src/app/models/guardiaRespose';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
+import { VerGuardiasComponent } from '../ver-guardias/ver-guardias.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -91,6 +94,15 @@ export class ElegirDiaComponent implements AfterViewInit, OnDestroy, OnInit {
       $.fn.dataTable.ext.errMode = 'throw';
     });
     //this.onReset();
+  }
+
+  verDetalle() {
+    this.modal.open(VerGuardiasComponent, {
+      size: 'xl',
+      backdrop: 'static',
+      keyboard: false,
+    });
+    this.adminService.usuarioTrigger.emit([usuario]);
   }
 
   get formulario() {
