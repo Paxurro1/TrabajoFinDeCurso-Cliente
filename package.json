@@ -18,6 +18,7 @@
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^12.1.2",
     "angular-datatables": "^13.1.0",
     "bootstrap": "^5.2.3",
     "datatables.net": "^1.13.1",

@@ -11,7 +11,10 @@ export class Guardia {
       obj['apellidos'],
       obj['hora'],
       obj['grupo'],
-      obj['aula']
+      obj['aula'],
+      obj['actividades'],
+      obj['nombreSuplente'],
+      obj['apellidosSuplente'],
     );
   }
 
@@ -23,6 +26,9 @@ export class Guardia {
     public hora: string,
     public grupo: string,
     public aula: string,
+    public actividades: string,
+    public nombreSuplente: string,
+    public apellidosSuplente: string,
   ) { }
 
 }

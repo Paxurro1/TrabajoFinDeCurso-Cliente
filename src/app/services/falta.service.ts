@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { profesorResponse } from '../models/profesorRespose';
 import { aulaResponse } from '../models/aulaRespose';
@@ -14,6 +14,7 @@ import { guardiaResponse } from '../models/guardiaRespose';
   providedIn: 'root'
 })
 export class FaltaService {
+  @Output() guardiaTrigger: EventEmitter<any> = new EventEmitter();
   public ruta: string = 'http://localhost:8000/api/';
   constructor(private http: HttpClient) { }
 

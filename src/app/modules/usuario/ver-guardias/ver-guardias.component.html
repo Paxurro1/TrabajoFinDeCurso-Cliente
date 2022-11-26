@@ -1,1 +1,39 @@
-<p>ver-guardias works!</p>
+<div class="card">
+  <div class="modal-header">
+    <h1 class="modal-title">Ausencia</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="col-12 modal-body">
+    <div class="row">
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="dia" class="form-label"><b>Día:</b></label>
+        <input readonly type="date" class="form-control" id="dia" value="{{guardia.dia}}">
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="ausente" class="form-label"><b>Ausente</b></label>
+        <input readonly type="text" class="form-control" id="ausente" value="{{guardia.nombre}} {{guardia.apellidos}}">
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="hora" class="form-label"><b>Hora</b></label>
+        <input readonly type="text" class="form-control" id="hora" value="{{guardia.hora}}">
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="grupo" class="form-label"><b>Grupo</b></label>
+        <input readonly type="text" class="form-control" id="grupo" value="{{guardia.grupo}}">
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="aula" class="form-label"><b>Aula</b></label>
+        <input readonly type="text" class="form-control" id="aula" value="{{guardia.aula}}">
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="suplente" class="form-label"><b>Suplente</b></label>
+        <input readonly type="text" class="form-control" id="suplente"
+          value="{{guardia.nombreSuplente}} {{guardia.apellidosSuplente}}">
+      </div>
+      <div class="mb-3 col-12">
+        <label for="actividades" class="form-label"><b>Actividades</b></label>
+        <textarea readonly class="form-control" id="actividades" rows="4">{{guardia.actividades}}</textarea>
+      </div>
+    </div>
+  </div>
+</div>

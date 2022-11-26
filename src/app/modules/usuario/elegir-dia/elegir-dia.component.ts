@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { VerGuardiasComponent } from '../ver-guardias/ver-guardias.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Guardia } from 'src/app/models/guardia';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class ElegirDiaComponent implements AfterViewInit, OnDestroy, OnInit {
     private toastr: ToastrService,
     private faltasService: FaltaService,
     private router: Router,
+    private modal: NgbModal,
   ) {
     this.validar = this.formBuilder.group({
       fecha: ['', Validators.compose([
@@ -88,7 +90,6 @@ export class ElegirDiaComponent implements AfterViewInit, OnDestroy, OnInit {
 
     this.faltasService.getGuardias(datos.fecha).subscribe((response) => {
       this.guardias = response;
-      console.log(this.guardias);
       this.rerender();
       this.dtTrigger.next(this.guardias);
       $.fn.dataTable.ext.errMode = 'throw';
@@ -96,13 +97,13 @@ export class ElegirDiaComponent implements AfterViewInit, OnDestroy, OnInit {
     //this.onReset();
   }
 
-  verDetalle() {
+  verDetalle(g: Guardia) {
     this.modal.open(VerGuardiasComponent, {
       size: 'xl',
       backdrop: 'static',
       keyboard: false,
     });
-    this.adminService.usuarioTrigger.emit([usuario]);
+    this.faltasService.guardiaTrigger.emit([g]);
   }
 
   get formulario() {

@@ -10,6 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DataTablesModule } from 'angular-datatables';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { DataTablesModule } from 'angular-datatables';
     BrowserAnimationsModule,
     NgxPaginationModule,
     DataTablesModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

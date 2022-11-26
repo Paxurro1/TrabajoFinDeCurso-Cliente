@@ -6,4 +6,7 @@ export interface guardiaResponse {
   hora: string,
   grupo: string,
   aula: string,
+  actividades: string,
+  nombreSuplente: string,
+  apellidosSuplente: string,
 }
