@@ -1,0 +1,27 @@
+<ng-container *ngIf="notificaciones.length == 0">
+  <div class="row">
+    <div class="d-flex justify-content-between pb-3">
+      <h1 class="h2">No tienes ninguna notificación</h1>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="notificaciones.length > 0">
+  <div class="row">
+    <div class="d-flex justify-content-between pb-3">
+      <h1 class="h2">Notificaciones</h1>
+    </div>
+  </div>
+  <div class="row mt-2" *ngFor="let notificacion of notificaciones; let i = index">
+    <div *ngIf="notificacion.estado == '1'" class="col-12 col-sm-8 border border-dark border-2 rounded">
+      <p>{{notificacion.descripcion}} Enviadas por {{notificacion.nombre}} {{notificacion.apellidos}}.</p>
+    </div>
+    <div *ngIf="notificacion.estado == '2'" class="col-12 col-sm-8 border border-dark border-2 rounded opacity-50">
+      <p>{{notificacion.descripcion}} Enviadas por {{notificacion.nombre}} {{notificacion.apellidos}}.</p>
+    </div>
+    <div *ngIf="notificacion.estado == '2'" class="text-center col-12 col-sm-2 border border-dark border-2 rounded opacity-50">
+      <p>Falta leída</p>
+    </div>
+    <button (click)="notificacionLeidaJefatura(i, notificacion.id)" *ngIf="notificacion.estado == '1'" type="submit" class="btn btn-primary col-6 col-sm-2">Marcar como leída</button>
+    <button (click)="notificacionBorradaJefatura(i, notificacion.id)" type="submit" class="btn btn-danger col-6 col-sm-2">Eliminar notificación</button>
+  </div>
+</ng-container>

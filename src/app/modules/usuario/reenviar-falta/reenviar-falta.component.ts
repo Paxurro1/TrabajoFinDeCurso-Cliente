@@ -74,6 +74,7 @@ export class ReenviarFaltaComponent implements OnInit {
       return;
     }
     var datos = {
+      'email': this.usuario?.email,
       'ausencias': this.falta.value.ausencias
     }
     //console.log(datos)

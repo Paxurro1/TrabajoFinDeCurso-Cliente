@@ -5,6 +5,7 @@ import { ReenviarFaltaComponent } from './reenviar-falta/reenviar-falta.componen
 import { VerFaltaComponent } from './ver-falta/ver-falta.component';
 import { ElegirDiaComponent } from './elegir-dia/elegir-dia.component';
 import { VerGuardiasComponent } from './ver-guardias/ver-guardias.component';
+import { NotificacionesUsuarioComponent } from './notificaciones-usuario/notificaciones-usuario.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path:'ver-guardias',
     component: VerGuardiasComponent
+  },
+  {
+    path:'notificaciones-usuario',
+    component: NotificacionesUsuarioComponent
   },
 ];
 

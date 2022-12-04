@@ -10,6 +10,7 @@ import { ElegirDiaComponent } from './elegir-dia/elegir-dia.component';
 import { VerGuardiasComponent } from './ver-guardias/ver-guardias.component';
 import { DataTablesModule } from 'angular-datatables';
 import { HttpClientModule } from '@angular/common/http';
+import { NotificacionesUsuarioComponent } from './notificaciones-usuario/notificaciones-usuario.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     VerFaltaComponent,
     ReenviarFaltaComponent,
     ElegirDiaComponent,
-    VerGuardiasComponent
+    VerGuardiasComponent,
+    NotificacionesUsuarioComponent
   ],
   imports: [
     CommonModule,

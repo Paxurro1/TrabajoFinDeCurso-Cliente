@@ -6,13 +6,15 @@ import { VerificarFaltaComponent } from './verificar-falta/verificar-falta.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HistorialFaltasComponent } from './historial-faltas/historial-faltas.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NotificacionesJefaturaComponent } from './notificaciones-jefatura/notificaciones-jefatura.component';
 
 
 
 @NgModule({
   declarations: [
     VerificarFaltaComponent,
-    HistorialFaltasComponent
+    HistorialFaltasComponent,
+    NotificacionesJefaturaComponent
   ],
   imports: [
     CommonModule,
