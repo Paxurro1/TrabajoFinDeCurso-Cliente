@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Notificacion } from 'src/app/models/notificacion';
 import { Usuario } from 'src/app/models/usuario';
 import { NotificacionesService } from 'src/app/services/notificaciones.service';
@@ -15,6 +15,7 @@ export class NotificacionesJefaturaComponent implements OnInit {
 
   notificaciones: Notificacion[] = [];
   usuario?: Usuario;
+  @Input()numeroNotificaciones?: Number;
 
   constructor(
     private notiService: NotificacionesService,
@@ -31,7 +32,7 @@ export class NotificacionesJefaturaComponent implements OnInit {
   getNotificacionesJefatura() {
     this.notiService.getNotificacionesJefatura(this.usuario!.email).subscribe((response) => {
       this.notificaciones = response;
-      //console.log(this.notificaciones);
+      console.log(this.notificaciones);
     });
   }
 

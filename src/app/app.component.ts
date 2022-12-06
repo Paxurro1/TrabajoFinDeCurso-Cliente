@@ -7,8 +7,11 @@ import { LoginStorageUserService } from './services/login.storageUser.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   title = 'TrabajoFinDeCurso-Cliente';
   usuario;
+  numeroNotificaciones: number = 0;
+
   constructor(
     private storageUser: LoginStorageUserService,
   ) {

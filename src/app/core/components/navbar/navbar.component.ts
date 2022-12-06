@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { timeout } from 'rxjs';
+import { Notificacion } from 'src/app/models/notificacion';
 import { LoginStorageUserService } from 'src/app/services/login.storageUser.service';
+import { NotificacionesService } from 'src/app/services/notificaciones.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,18 +10,52 @@ import { LoginStorageUserService } from 'src/app/services/login.storageUser.serv
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
   usuario;
+
+  notificaciones: Notificacion[] = [];
+  @Input()numeroNotificaciones?: Number;
+
   constructor(
     private storageUser: LoginStorageUserService,
+    private notiService: NotificacionesService,
   ) {
-    // let aux = sessionStorage.getItem(LoginComponent.usuario);
-    // let usuario = JSON.parse(aux!)
-    // this.usuario = Usuario.usuarioJSON(usuario)
     this.usuario = storageUser.getUser();
   }
 
   ngOnInit(): void {
     console.log(this.usuario)
+    setInterval(()=>{
+      if (this.usuario?.rol_activo == 2) {
+        this.getNotificacionesJefatura()
+      } else if (this.usuario?.rol_activo == 3) {
+        this.getNotificacionesUsuario()
+      }
+    }, 1000)
+
+
+  }
+
+  getNotificacionesJefatura() {
+    this.notiService.getNotificacionesJefatura(this.usuario!.email).subscribe((response) => {
+      this.notificaciones = response;
+      // console.log('soy jefatura')
+      console.log(this.notificaciones);
+      // console.log('AAAAAAAAAAAA')
+      this.notificacionSinLeer()
+    });
+  }
+
+  getNotificacionesUsuario() {
+    this.notiService.getNotificacionesUsuario(this.usuario!.email).subscribe((response) => {
+      this.notificaciones = response;
+      //console.log(this.notificaciones);
+      this.notificacionSinLeer()
+    });
+  }
+
+  notificacionSinLeer(){
+    this.numeroNotificaciones = this.notificaciones.filter((n)=>n.estado == '1').length;
   }
 
 }
