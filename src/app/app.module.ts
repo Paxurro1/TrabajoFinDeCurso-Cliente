@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DataTablesModule } from 'angular-datatables';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NumeroNotificaciones } from './services/numeroNotificaciones.service';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     DataTablesModule,
     NgbModule
   ],
-  providers: [],
+  providers: [NumeroNotificaciones],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

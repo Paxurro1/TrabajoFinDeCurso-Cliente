@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { timeout } from 'rxjs';
 import { Notificacion } from 'src/app/models/notificacion';
 import { LoginStorageUserService } from 'src/app/services/login.storageUser.service';
 import { NotificacionesService } from 'src/app/services/notificaciones.service';
+import { NumeroNotificaciones } from 'src/app/services/numeroNotificaciones.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,20 +19,19 @@ export class NavbarComponent implements OnInit {
   constructor(
     private storageUser: LoginStorageUserService,
     private notiService: NotificacionesService,
+    private numero: NumeroNotificaciones,
   ) {
     this.usuario = storageUser.getUser();
   }
 
   ngOnInit(): void {
     console.log(this.usuario)
-    setInterval(()=>{
-      if (this.usuario?.rol_activo == 2) {
-        this.getNotificacionesJefatura()
-      } else if (this.usuario?.rol_activo == 3) {
-        this.getNotificacionesUsuario()
-      }
-    }, 1000)
-
+    this.numero.customNumeroNotificaciones.subscribe(numero => this.numeroNotificaciones = numero);
+    if (this.usuario?.rol_activo == 2) {
+      this.getNotificacionesJefatura()
+    } else if (this.usuario?.rol_activo == 3) {
+      this.getNotificacionesUsuario()
+    }
 
   }
 
@@ -40,7 +39,7 @@ export class NavbarComponent implements OnInit {
     this.notiService.getNotificacionesJefatura(this.usuario!.email).subscribe((response) => {
       this.notificaciones = response;
       // console.log('soy jefatura')
-      console.log(this.notificaciones);
+      //console.log(this.notificaciones);
       // console.log('AAAAAAAAAAAA')
       this.notificacionSinLeer()
     });
