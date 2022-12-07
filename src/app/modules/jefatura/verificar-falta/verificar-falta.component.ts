@@ -17,7 +17,7 @@ export class VerificarFaltaComponent implements OnInit {
 
   ausencias: TareaEvaluar[] = [];
   falta: FormGroup;
-  submitted: boolean = false;
+  rechazo: boolean = false;
   profesores: any = [];
 
   constructor(
@@ -58,6 +58,7 @@ export class VerificarFaltaComponent implements OnInit {
   }
 
   public rechazarTarea(i: number, id: number) {
+    this.rechazo = true;
     if (!this.motivos.at(i).valid) {
       return;
     }

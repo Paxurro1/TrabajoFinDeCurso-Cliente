@@ -12,77 +12,76 @@
     </div>
   </div>
   <div class="row">
-    <form class="col-12 formulario" [formGroup]="falta">
-      <div class="mb-1 col-12 border border-dark" *ngFor="let ausencia of ausencias; let i = index"
-        formArrayName="motivos">
-        <div class="row m-2 mt-2">
-          <div class="col-12 col-sm-4">
-            <div class="row">
-              <div class="col-4">
-                <label class="form-label" [attr.for]="'ausente' + i" class="pr-3"><strong>Ausente:</strong></label>
-              </div>
-              <div class="col-8">
-                <input readonly class="form-control" type="text" [attr.id]="'ausente' + i" [value]="ausencia.ausente">
-              </div>
-              <div class="col-4">
-                <label class="form-label" [attr.for]="'hora' + i" class="pr-3"><strong>Hora:</strong></label>
-              </div>
-              <div class="col-8">
-                <input readonly class="form-control" type="text" [attr.id]="'hora' + i" [value]="ausencia.hora">
-              </div>
-              <div class="col-4">
-                <label [attr.for]="'aula' + i" class="pr-3"><strong>Aula:</strong></label>
-              </div>
-              <div class="col-8">
-                <input readonly class="form-control" type="text" [attr.id]="'aula' + i" [value]="ausencia.aula">
-              </div>
-              <div class="col-4">
-                <label [attr.for]="'grupo' + i" class="pr-3"><strong>Grupo:</strong></label>
-              </div>
-              <div class="col-8">
-                <input readonly class="form-control" type="text" [attr.id]="'grupo' + i" [value]="ausencia.grupo">
-              </div>
-              <div class="col-4">
-                <label [attr.for]="'profesor' + i" class="pr-3"><strong>Sustituto:</strong></label>
-              </div>
-              <div class="col-8">
-                <input readonly class="form-control" type="text" [attr.id]="'profesor' + i" [value]="ausencia.suplente">
-              </div>
+    <form [formGroup]="falta" class="formulario mb-1 col-12 border border-2 border-dark rounded"
+      *ngFor="let ausencia of ausencias; let i = index">
+      <div class="row mt-2">
+        <div class="col-12 col-sm-4">
+          <div class="row">
+            <div class="col-4">
+              <label class="form-label" [attr.for]="'ausente' + i" class="pr-3"><strong>Ausente:</strong></label>
+            </div>
+            <div class="col-8">
+              <input readonly class="form-control" type="text" [attr.id]="'ausente' + i" [value]="ausencia.ausente">
+            </div>
+            <div class="col-4">
+              <label class="form-label" [attr.for]="'hora' + i" class="pr-3"><strong>Hora:</strong></label>
+            </div>
+            <div class="col-8">
+              <input readonly class="form-control" type="text" [attr.id]="'hora' + i" [value]="ausencia.hora">
+            </div>
+            <div class="col-4">
+              <label [attr.for]="'aula' + i" class="pr-3"><strong>Aula:</strong></label>
+            </div>
+            <div class="col-8">
+              <input readonly class="form-control" type="text" [attr.id]="'aula' + i" [value]="ausencia.aula">
+            </div>
+            <div class="col-4">
+              <label [attr.for]="'grupo' + i" class="pr-3"><strong>Grupo:</strong></label>
+            </div>
+            <div class="col-8">
+              <input readonly class="form-control" type="text" [attr.id]="'grupo' + i" [value]="ausencia.grupo">
+            </div>
+            <div class="col-4">
+              <label [attr.for]="'profesor' + i" class="pr-3"><strong>Sustituto:</strong></label>
+            </div>
+            <div class="col-8">
+              <input readonly class="form-control" type="text" [attr.id]="'profesor' + i" [value]="ausencia.suplente">
             </div>
           </div>
-          <div class="col-12 col-sm-8">
-            <label [attr.for]="'actividades' + i" class="pr-3"><strong>Actividades:</strong></label>
-            <textarea readonly class="form-control" name="actividades2" [attr.id]="'actividades' + i" rows="4">{{ausencia.actividades}}
-            </textarea>
-          </div>
         </div>
-        <div class="col-12 p-2" [formGroupName]="i">
+        <div class="col-12 col-sm-8">
+          <label [attr.for]="'actividades' + i" class="pr-3"><strong>Actividades:</strong></label>
+          <textarea readonly class="form-control" name="actividades2" [attr.id]="'actividades' + i"
+            rows="4">{{ausencia.actividades}}</textarea>
+        </div>
+      </div>
+      <div class="row mb-1" formArrayName="motivos">
+        <div class="col-12"  [formGroupName]="i">
           <label [attr.for]="'motivo' + i" class="pr-3"><strong>Motivo del rechazo:</strong></label>
           <textarea class="form-control" [attr.id]="'motivo' + i" rows="1" formControlName="motivo"></textarea>
-        </div>
-        <div *ngIf="motivos.controls[i].get('motivo')?.errors?.['required']">
-          <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
-            Si rechazas una tarea tienes que añadir un motivo.
+          <div *ngIf="rechazo && motivos.controls[i].get('motivo')?.errors?.['required']">
+            <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
+              Si rechazas una tarea tienes que añadir un motivo.
+            </div>
+          </div>
+          <div *ngIf="rechazo && motivos.controls[i].get('motivo')?.errors?.['minlength']">
+            <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
+              El motivo tiene que tener mínimo 5 carácteres.
+            </div>
+          </div>
+          <div *ngIf="motivos.controls[i].get('motivo')?.errors?.['maxlength']">
+            <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
+              El motivo tiene que tener máximo 250 carácteres.
+            </div>
           </div>
         </div>
-        <div *ngIf="motivos.controls[i].get('motivo')?.errors?.['minlength']">
-          <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
-            El motivo tiene que tener mínimo 5 carácteres.
-          </div>
-        </div>
-        <div *ngIf="motivos.controls[i].get('motivo')?.errors?.['maxlength']">
-          <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
-            El motivo tiene que tener máximo 250 carácteres.
-          </div>
-        </div>
-        <button type="button" (click)="aprobarTarea(i, ausencia.id)" class="btn btn-success col-6 col-sm-6 mb-2">Aprobar
-          tarea
-        </button>
-        <button type="button" (click)="rechazarTarea(i, ausencia.id)"
-          class="btn btn-danger col-6 col-sm-6 mb-2">Rechazar
-          tarea
-        </button>
       </div>
+      <button type="button" (click)="aprobarTarea(i, ausencia.id)" class="btn btn-success col-6 col-sm-6 mb-1">Aprobar
+        tarea
+      </button>
+      <button type="button" (click)="rechazarTarea(i, ausencia.id)" class="btn btn-danger col-6 col-sm-6 mb-1">Rechazar
+        tarea
+      </button>
     </form>
   </div>
 </ng-container>
