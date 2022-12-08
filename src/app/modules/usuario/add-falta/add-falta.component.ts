@@ -109,13 +109,14 @@ export class AddFaltaComponent implements OnInit {
       next: (res) => {
         this.toastr.success('Falta registrada.', 'Registro');
         console.log(res)
+        this.onReset();
       },
       error: e => {
         console.log(e);
         this.toastr.error('La falta no ha podido registrarse.', 'Error');
       }
     })
-    this.onReset();
+
   }
 
   public addAusencia() {
@@ -142,6 +143,16 @@ export class AddFaltaComponent implements OnInit {
   onReset() {
     this.submitted = false;
     this.falta.reset();
+    this.ausencias.clear();
+    const ausenciaFormGroup = this.formBuilder.group({
+      hora: new FormControl('', [Validators.required]),
+      aula: new FormControl('', [Validators.required]),
+      grupo: new FormControl('', [Validators.required]),
+      profesor: new FormControl('', [Validators.required]),
+      actividades: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(250)]),
+    })
+    this.ausencias.push(ausenciaFormGroup);
+    this.formularios = 1;
   }
 
 }

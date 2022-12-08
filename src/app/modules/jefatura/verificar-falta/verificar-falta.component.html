@@ -55,8 +55,21 @@
             rows="4">{{ausencia.actividades}}</textarea>
         </div>
       </div>
+      <div class="row mb-1" formArrayName="tipos">
+        <div class="col-12 col-sm-5"s [formGroupName]="i">
+          <label [attr.for]="'tipoRechazo' + i" class="pr-3"><strong>Tipo de ausencia:</strong></label>
+          <select [attr.id]="'tipoRechazo' + i" formControlName="tipo" class="form-select">
+            <option *ngFor="let au of tiposAusencias" [value]="au.siglas">{{au.descripcion}}</option>
+          </select>
+          <div *ngIf="tipoMotivo && tipos.controls[i].get('tipo')?.errors?.['required']">
+            <div class="h6 text-danger bg-white rounded border border-2 border-danger p-2">
+              Si apruebas una tarea tienes que añadir un tipo de ausencia.
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row mb-1" formArrayName="motivos">
-        <div class="col-12"  [formGroupName]="i">
+        <div class="col-12" [formGroupName]="i">
           <label [attr.for]="'motivo' + i" class="pr-3"><strong>Motivo del rechazo:</strong></label>
           <textarea class="form-control" [attr.id]="'motivo' + i" rows="1" formControlName="motivo"></textarea>
           <div *ngIf="rechazo && motivos.controls[i].get('motivo')?.errors?.['required']">
