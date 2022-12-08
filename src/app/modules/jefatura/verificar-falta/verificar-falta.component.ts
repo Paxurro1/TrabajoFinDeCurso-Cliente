@@ -52,7 +52,7 @@ export class VerificarFaltaComponent implements OnInit {
   getTiposAusencias() {
     this.verificarService.getTiposAusencias().subscribe((response) => {
       this.tiposAusencias = response;
-      console.log(this.tiposAusencias);
+      //console.log(this.tiposAusencias);
     });
   }
 
