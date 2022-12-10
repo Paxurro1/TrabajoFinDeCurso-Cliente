@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HistorialFaltasComponent } from './historial-faltas/historial-faltas.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NotificacionesJefaturaComponent } from './notificaciones-jefatura/notificaciones-jefatura.component';
+import { RegistrarUsuarioComponent } from './registrar-usuario/registrar-usuario.component';
+import { DataTablesModule } from 'angular-datatables';
 
 
 
@@ -14,14 +16,16 @@ import { NotificacionesJefaturaComponent } from './notificaciones-jefatura/notif
   declarations: [
     VerificarFaltaComponent,
     HistorialFaltasComponent,
-    NotificacionesJefaturaComponent
+    NotificacionesJefaturaComponent,
+    RegistrarUsuarioComponent
   ],
   imports: [
     CommonModule,
     JefaturaRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    DataTablesModule
   ]
 })
 export class JefaturaModule { }

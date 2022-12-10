@@ -42,6 +42,11 @@
             aria-current="page">Notificaciones ({{numeroNotificaciones}})
           </a>
         </li>
+        <li *ngIf="usuario.rol_activo == 2">
+          <a class="nav-link link-white" routerLinkActive="active" routerLink="jefatura/registrar-usuario"
+            aria-current="page">Registrar usuario
+          </a>
+        </li>
       </ul>
     </div>
   </nav>

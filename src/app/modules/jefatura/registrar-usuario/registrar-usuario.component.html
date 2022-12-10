@@ -1,0 +1,286 @@
+<div class="row">
+  <div class="d-flex justify-content-between pb-3">
+    <h1 class="h2">Registrar profesor</h1>
+  </div>
+</div>
+<div class="row" *ngIf="formularioConstruido == true">
+  <div class="col-12 formulario">
+    <form [formGroup]="registro" (ngSubmit)="onSubmit()" class="row">
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="email" class="form-label"><b>Email</b></label>
+        <input type="email" formControlName="email" class="form-control" id="email">
+        <div *ngIf="submitted && formulario['email'].errors">
+          <div *ngIf="formulario['email'].errors['required']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">El email no puede estar vacío.
+          </div>
+          <div *ngIf="formulario['email'].errors['email']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">El email introducido no tiene un
+            formato válido.</div>
+        </div>
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="nombre" class="form-label"><b>Nombre</b></label>
+        <input type="text" formControlName="nombre" class="form-control" id="nombre">
+        <div *ngIf="submitted && formulario['nombre'].errors">
+          <div *ngIf="formulario['nombre'].errors['required']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">El nombre no puede estar vacío.
+          </div>
+          <div *ngIf="formulario['nombre'].errors['minlength']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">El nombre tiene que tener al menos
+            3 carácteres.</div>
+          <div *ngIf="formulario['nombre'].errors['maxlength']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">El nombre puede tener como máximo
+            20 carácteres.</div>
+        </div>
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="apellidos" class="form-label"><b>Apellidos</b></label>
+        <input type="text" formControlName="apellidos" class="form-control" id="apellidos">
+        <div *ngIf="submitted && formulario['apellidos'].errors">
+          <div *ngIf="formulario['apellidos'].errors['required']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">El apellido no puede estar vacío.
+          </div>
+          <div *ngIf="formulario['apellidos'].errors['minlength']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">El apellido tiene que tener al
+            menos
+            3 carácteres.</div>
+          <div *ngIf="formulario['apellidos'].errors['maxlength']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">El apellido puede tener como
+            máximo
+            30 carácteres.</div>
+        </div>
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="pass1" class="form-label"><b>Contraseña</b></label>
+        <input type="password" formControlName="pass1" class="form-control" id="pass1"
+          pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30})">
+        <div *ngIf="submitted && formulario['pass1'].errors">
+          <div *ngIf="formulario['pass1'].errors['required']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">La contraseña no puede estar
+            vacía.</div>
+          <div *ngIf="formulario['pass1'].errors['minlength']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">La contraseña debe tener mínimo 8
+            carácteres.</div>
+          <div *ngIf="formulario['pass1'].errors['pattern']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">La contraseña debe tener una
+            minúscula, una mayúscula y un número.</div>
+          <div *ngIf="formulario['pass1'].errors['maxlength']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">La contraseña puede tener como
+            máximo 30 carácteres.</div>
+        </div>
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="pass2" class="form-label"><b>Repite la contraseña</b></label>
+        <input type="password" formControlName="pass2" class="form-control" id="pass2">
+        <div *ngIf="submitted && formulario['pass2'].errors">
+          <div *ngIf="formulario['pass2'].errors['required']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">La contraseña no puede estar
+            vacía.</div>
+          <div *ngIf="formulario['pass2'].errors['NoPassswordMatch']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Las contraseñas no coinciden.
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label class="form-label"><b>Roles</b></label>
+        <div class="col pb-2 d-flex justify-content-between" id="roles">
+          <label for="jefatura"><input id="jefatura" type="checkbox" value="2" (change)="onCheckboxChange($event)">
+            Jefatura</label>
+          <label for="profesor"><input id="profesor" type="checkbox" value="3" (change)="onCheckboxChange($event)">
+            Profesor</label>
+        </div>
+        <div *ngIf="submitted && formulario['checkArray'].errors">
+          <div *ngIf="formulario['checkArray'].errors['required']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2">Tiene que tener al menos un rol.
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <label class="form-label"><b>Registro de horario</b></label>
+        <table class="table table-striped table-bordered row-border hover text-center table-hover bg-white">
+          <thead class="table-danger text-black">
+            <tr>
+              <th scope="col">Horario</th>
+              <th scope="col">Lunes</th>
+              <th scope="col">Martes</th>
+              <th scope="col">Miercoles</th>
+              <th scope="col">Jueves</th>
+              <th scope="col">Viernes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Primera</th>
+              <td>
+                <select class="form-select" formControlName="l1">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="m1">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="x1">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="j1">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="v1">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>Segunda</th>
+              <td>
+                <select class="form-select" formControlName="l2">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="m2">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="x2">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="j2">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="v2">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>Tercera</th>
+              <td>
+                <select class="form-select" formControlName="l3">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="m3">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="x3">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="j3">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="v3">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>Cuarta</th>
+              <td>
+                <select class="form-select" formControlName="l4">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="m4">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="x4">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="j4">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="v4">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>Quinta</th>
+              <td>
+                <select class="form-select" formControlName="l5">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="m5">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="x5">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="j5">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="v5">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>Sexta</th>
+              <td>
+                <select class="form-select" formControlName="l6">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="m6">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="x6">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="j6">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select" formControlName="v6">
+                  <option *ngFor="let g of grupos" [value]="g.nombre">{{g.nombre}}</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button type="submit" class="btn btn-primary" value="Registro">Registrar profesor</button>
+    </form>
+  </div>
+</div>
