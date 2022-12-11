@@ -43,39 +43,6 @@ export class RegistrarUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGruposRegistro();
-    // const validaGrupoFormGroup = this.formBuilder.group({
-    //   l1: new FormControl('', [Validators.required]),
-    //   l2: new FormControl('', [Validators.required]),
-    //   l3: new FormControl('', [Validators.required]),
-    //   l4: new FormControl('', [Validators.required]),
-    //   l5: new FormControl('', [Validators.required]),
-    //   l6: new FormControl('', [Validators.required]),
-    //   m1: new FormControl('', [Validators.required]),
-    //   m2: new FormControl('', [Validators.required]),
-    //   m3: new FormControl('', [Validators.required]),
-    //   m4: new FormControl('', [Validators.required]),
-    //   m5: new FormControl('', [Validators.required]),
-    //   m6: new FormControl('', [Validators.required]),
-    //   x1: new FormControl('', [Validators.required]),
-    //   x2: new FormControl('', [Validators.required]),
-    //   x3: new FormControl('', [Validators.required]),
-    //   x4: new FormControl('', [Validators.required]),
-    //   x5: new FormControl('', [Validators.required]),
-    //   x6: new FormControl('', [Validators.required]),
-    //   j1: new FormControl('', [Validators.required]),
-    //   j2: new FormControl('', [Validators.required]),
-    //   j3: new FormControl('', [Validators.required]),
-    //   j4: new FormControl('', [Validators.required]),
-    //   j5: new FormControl('', [Validators.required]),
-    //   j6: new FormControl('', [Validators.required]),
-    //   v1: new FormControl('', [Validators.required]),
-    //   v2: new FormControl('', [Validators.required]),
-    //   v3: new FormControl('', [Validators.required]),
-    //   v4: new FormControl('', [Validators.required]),
-    //   v5: new FormControl('', [Validators.required]),
-    //   v6: new FormControl('', [Validators.required]),
-    // })
-    // this.validaGrupos.push(validaGrupoFormGroup);
     $.extend(true, $.fn.dataTable.defaults, {
       "language": { "url": '//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json' }
     })
@@ -100,94 +67,94 @@ export class RegistrarUsuarioComponent implements OnInit {
         Validators.required])
       ],
       // validaGrupos: this.formBuilder.array([]),
-      l1: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      l1: ['Lunes|Primera|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      l2: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      l2: ['Lunes|Segunda|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      l3: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      l3: ['Lunes|Tercera|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      l4: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      l4: ['Lunes|Cuarta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      l5: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      l5: ['Lunes|Quinta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      l6: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      l6: ['Lunes|Sexta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      m1: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      m1: ['Martes|Primera|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      m2: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      m2: ['Martes|Segunda|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      m3: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      m3: ['Martes|Tercera|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      m4: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      m4: ['Martes|Cuarta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      m5: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      m5: ['Martes|Quinta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      m6: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      m6: ['Martes|Sexta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      x1: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      x1: ['Miercoles|Primera|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      x2: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      x2: ['Miercoles|Segunda|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      x3: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      x3: ['Miercoles|Tercera|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      x4: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      x4: ['Miercoles|Cuarta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      x5: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      x5: ['Miercoles|Quinta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      x6: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      x6: ['Miercoles|Sexta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      j1: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      j1: ['Jueves|Primera|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      j2: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      j2: ['Jueves|Segunda|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      j3: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      j3: ['Jueves|Tercera|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      j4: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      j4: ['Jueves|Cuarta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      j5: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      j5: ['Jueves|Quinta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      j6: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      j6: ['Jueves|Sexta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      v1: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      v1: ['Viernes|Primera|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      v2: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      v2: ['Viernes|Segunda|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      v3: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      v3: ['Viernes|Tercera|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      v4: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      v4: ['Viernes|Cuarta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      v5: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      v5: ['Viernes|Quinta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
-      v6: [this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
+      v6: ['Viernes|Sexta|' + this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre, Validators.compose([
         Validators.required])
       ],
     },
@@ -228,7 +195,7 @@ export class RegistrarUsuarioComponent implements OnInit {
   getGruposRegistro() {
     this.registroService.getGruposRegistro().subscribe((response) => {
       this.grupos = response;
-      console.log(this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre);
+      //console.log(this.grupos.filter((n)=>n.nombre == 'No asiste')[0].nombre);
       this.dtTrigger.next(this.grupos);
       $.fn.dataTable.ext.errMode = 'throw';
       this.construirFormulario();
@@ -238,9 +205,9 @@ export class RegistrarUsuarioComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    // if (!this.registro.valid) {
-    //   return;
-    // }
+    if (!this.registro.valid) {
+      return;
+    }
     var datos = {
       'email': this.registro.value.email,
       'nombre': this.registro.value.nombre,
@@ -251,18 +218,18 @@ export class RegistrarUsuarioComponent implements OnInit {
       this.registro.value.m1, this.registro.value.m2, this.registro.value.m3, this.registro.value.m4, this.registro.value.m5, this.registro.value.m6,
       this.registro.value.x1, this.registro.value.x2, this.registro.value.x3, this.registro.value.x4, this.registro.value.x5, this.registro.value.x6,
       this.registro.value.j1, this.registro.value.j2, this.registro.value.j3, this.registro.value.j4, this.registro.value.j5, this.registro.value.j6,
-      this.registro.value.v1, this.registro.value.v2, this.registro.value.v3, this.registro.value.v4, this.registro.value.v5, this.registro.value.v6,]
+      this.registro.value.v1, this.registro.value.v2, this.registro.value.v3, this.registro.value.v4, this.registro.value.v5, this.registro.value.v6]
     }
-    // this.registroService.addUsuario(datos).subscribe({
-    //   next: (res) => {
-    //     this.toastr.success('Usuario registrado.', 'Registro');
-    //     this.onReset();
-    //   },
-    //   error: e => {
-    //     console.log(e);
-    //     this.toastr.error('El email o el DNI ya están en uso.', 'Error');
-    //   }
-    // })
+    this.registroService.addUsuario(datos).subscribe({
+      next: (res) => {
+        this.toastr.success('Usuario registrado.', 'Registro');
+        this.onReset();
+      },
+      error: e => {
+        console.log(e);
+        this.toastr.error('El email o el DNI ya están en uso.', 'Error');
+      }
+    })
     console.log(datos);
   }
 
@@ -273,6 +240,7 @@ export class RegistrarUsuarioComponent implements OnInit {
   onReset() {
     this.submitted = false;
     this.registro.reset();
+    this.construirFormulario();
   }
 
 }
