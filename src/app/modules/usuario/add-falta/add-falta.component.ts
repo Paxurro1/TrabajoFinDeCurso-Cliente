@@ -19,6 +19,8 @@ export class AddFaltaComponent implements OnInit {
   usuario?: Usuario;
   submitted: boolean = false;
   formularios: number = 1;
+  horas = ['Primera', 'Segunda', 'Tercera', 'Cuarta', 'Quinta', 'Sexta'];
+  horasAux = ['Primera', 'Segunda', 'Tercera', 'Cuarta', 'Quinta', 'Sexta'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -153,6 +155,12 @@ export class AddFaltaComponent implements OnInit {
     })
     this.ausencias.push(ausenciaFormGroup);
     this.formularios = 1;
+  }
+
+  cambioHora(hora: string) {
+    console.log(hora)
+    this.horasAux = this.horas.filter((i) => i !== hora);
+    console.log(this.horas)
   }
 
 }

@@ -47,12 +47,7 @@
               </div>
               <div class="col-8">
                 <select [attr.id]="'hora' + i" formControlName="hora" class="form-select">
-                  <option value="Primera">Primera</option>
-                  <option value="Segunda">Segunda</option>
-                  <option value="Tercera">Tercera</option>
-                  <option value="Cuarta">Cuarta</option>
-                  <option value="Quinta">Quinta</option>
-                  <option value="Sexta">Sexta</option>
+                  <option *ngFor="let hora of horas" [value]="hora" (click)="cambioHora(hora)">{{hora}}</option>
                 </select>
               </div>
               <div *ngIf="submitted && ausencias.controls[i].get('hora')?.errors?.['required']">
