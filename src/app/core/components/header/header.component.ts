@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
 
   usuario;
   public imgLogo: string;
+  public isMobileLayout = false;
 
   constructor(
     private storageUser: LoginStorageUserService,
@@ -19,6 +20,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.onresize = () => this.isMobileLayout = window.innerWidth <= 991;
   }
 
   public irInicio() {
@@ -29,6 +31,15 @@ export class HeaderComponent implements OnInit {
     } else if (this.usuario!.rol_activo == 3) {
       window.location.href = "usuario/add-falta"
     }
+  }
+
+  isMobile(){
+    console.log('eeeeee')
+    console.log(document.body.offsetWidth)
+    if (document.body.offsetWidth < 360) {
+      return true;
+    }
+    return false;
   }
 
 }
