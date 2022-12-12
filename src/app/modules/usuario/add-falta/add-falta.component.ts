@@ -20,7 +20,7 @@ export class AddFaltaComponent implements OnInit {
   submitted: boolean = false;
   formularios: number = 1;
   horas = ['Primera', 'Segunda', 'Tercera', 'Cuarta', 'Quinta', 'Sexta'];
-  horasAux = ['Primera', 'Segunda', 'Tercera', 'Cuarta', 'Quinta', 'Sexta'];
+  horasSeleccionadas: string[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -157,10 +157,16 @@ export class AddFaltaComponent implements OnInit {
     this.formularios = 1;
   }
 
-  cambioHora(hora: string) {
-    console.log(hora)
-    this.horasAux = this.horas.filter((i) => i !== hora);
-    console.log(this.horas)
+  showHora(hora: string) {
+    //console.log(this.horas)
+    let bandera: boolean = false;
+    this.ausencias.controls.forEach(c => {
+      // console.log(c.get('hora')?.value)
+      if (c.get('hora')?.value == hora) {
+        bandera = true;
+      }
+    });
+    return bandera;
   }
 
 }

@@ -47,7 +47,9 @@
               </div>
               <div class="col-8">
                 <select [attr.id]="'hora' + i" formControlName="hora" class="form-select">
-                  <option *ngFor="let hora of horas" [value]="hora" (click)="cambioHora(hora)">{{hora}}</option>
+                  <ng-container *ngFor="let hora of horas">
+                    <option *ngIf="!showHora(hora) || ausencias.controls[i].get('hora')?.value == hora" [value]="hora">{{hora}}</option>
+                  </ng-container>
                 </select>
               </div>
               <div *ngIf="submitted && ausencias.controls[i].get('hora')?.errors?.['required']">
