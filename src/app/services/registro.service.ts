@@ -22,4 +22,12 @@ export class registroService {
     return this.http.get<grupoResponse[]>(url);
   }
 
+  public registro(datos: object) {
+    let url: string = this.ruta + "registro";
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post(url, datos, { headers: headers });
+  }
+
 }
