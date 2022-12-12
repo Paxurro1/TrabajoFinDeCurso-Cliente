@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem(LoginComponent.usuario, JSON.stringify(usuario));
         console.log(this.usuario);
         if (this.usuario.rol_activo == 1) {
-          window.location.href = "usuario/add-falta"
+          window.location.href = "admin/crud-usuarios"
         } else if (this.usuario.rol_activo == 2) {
           window.location.href = "jefatura/verificar-falta"
         } else if (this.usuario.rol_activo == 3) {

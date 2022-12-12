@@ -14,6 +14,10 @@ const routes: Routes = [
     path:'jefatura',
     loadChildren:() => import('./modules/jefatura/jefatura.module').then((m) => m.JefaturaModule),
   },
+  {
+    path:'admin',
+    loadChildren:() => import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  },
 ];
 
 @NgModule({

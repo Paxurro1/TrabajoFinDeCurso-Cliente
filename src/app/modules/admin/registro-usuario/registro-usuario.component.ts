@@ -5,13 +5,14 @@ import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { Grupo } from 'src/app/models/grupo';
+import { CrudAdministradoresService } from 'src/app/services/crud-administradores.service';
 
 @Component({
-  selector: 'app-registrar-usuario',
-  templateUrl: './registrar-usuario.component.html',
-  styleUrls: ['./registrar-usuario.component.scss']
+  selector: 'app-registro-usuario',
+  templateUrl: './registro-usuario.component.html',
+  styleUrls: ['./registro-usuario.component.scss']
 })
-export class RegistrarUsuarioComponent implements OnInit {
+export class RegistroUsuarioComponent implements OnInit {
 
   formularioConstruido: boolean = false;
   registro: FormGroup;
@@ -26,6 +27,7 @@ export class RegistrarUsuarioComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private registroService: registroService,
+    private adminService: CrudAdministradoresService,
   ) {
     this.registro = this.formBuilder.group({
 
@@ -220,14 +222,14 @@ export class RegistrarUsuarioComponent implements OnInit {
       this.registro.value.j1, this.registro.value.j2, this.registro.value.j3, this.registro.value.j4, this.registro.value.j5, this.registro.value.j6,
       this.registro.value.v1, this.registro.value.v2, this.registro.value.v3, this.registro.value.v4, this.registro.value.v5, this.registro.value.v6]
     }
-    this.registroService.addUsuario(datos).subscribe({
+    this.adminService.addUsuarioAdmin(datos).subscribe({
       next: (res) => {
         this.toastr.success('Usuario registrado.', 'Registro');
         this.onReset();
       },
       error: e => {
         console.log(e);
-        this.toastr.error('El email está en uso.', 'Error');
+        this.toastr.error('El email ya está en uso.', 'Error');
       }
     })
     console.log(datos);
