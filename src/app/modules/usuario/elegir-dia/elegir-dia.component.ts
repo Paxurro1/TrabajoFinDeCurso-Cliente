@@ -86,13 +86,15 @@ export class ElegirDiaComponent implements AfterViewInit, OnDestroy, OnInit {
     var datos = {
       'fecha': this.validar.value.fecha,
     }
-    console.log(datos.fecha)
+    // console.log(datos.fecha)
 
     this.faltasService.getGuardias(datos.fecha).subscribe((response) => {
       this.guardias = response;
+      //console.log(this.guardias)
       this.rerender();
       this.dtTrigger.next(this.guardias);
       $.fn.dataTable.ext.errMode = 'throw';
+
     });
     //this.onReset();
   }

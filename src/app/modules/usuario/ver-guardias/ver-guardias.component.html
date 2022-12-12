@@ -30,7 +30,12 @@
         <input readonly type="text" class="form-control" id="suplente"
           value="{{guardia.nombreSuplente}} {{guardia.apellidosSuplente}}">
       </div>
-      <div class="mb-3 col-12">
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="suplente" class="form-label"><b>Tipo de ausencia</b></label>
+        <input readonly type="text" class="form-control" id="suplente"
+          value="{{guardia.descripcion}}">
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
         <label for="actividades" class="form-label"><b>Actividades</b></label>
         <textarea readonly class="form-control" id="actividades" rows="4">{{guardia.actividades}}</textarea>
       </div>

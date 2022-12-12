@@ -50,13 +50,34 @@
             <p>{{g.nombre}} {{g.apellidos}}</p>
           </td>
           <td class="cursor-pointer mano" scope="col" (click)="verDetalle(g)">
-            <p>{{g.hora}}</p>
+            <div *ngIf="g.hora == 'Primera'">{{g.grupo}}</div>
+            <div *ngIf="g.hora == 'Primera'">({{g.aula}})</div>
+            <div *ngIf="g.hora == 'Primera'">{{g.tipo_ausencia}}</div>
           </td>
           <td class="cursor-pointer mano" scope="col" (click)="verDetalle(g)">
-            <p>{{g.grupo}}</p>
+            <div *ngIf="g.hora == 'Segunda'">{{g.grupo}}</div>
+            <div *ngIf="g.hora == 'Segunda'">({{g.aula}})</div>
+            <div *ngIf="g.hora == 'Segunda'">{{g.tipo_ausencia}}</div>
           </td>
           <td class="cursor-pointer mano" scope="col" (click)="verDetalle(g)">
-            <p>{{g.aula}}</p>
+            <div *ngIf="g.hora == 'Tercera'">{{g.grupo}}</div>
+            <div *ngIf="g.hora == 'Tercera'">({{g.aula}})</div>
+            <div *ngIf="g.hora == 'Tercera'">{{g.tipo_ausencia}}</div>
+          </td>
+          <td class="cursor-pointer mano" scope="col" (click)="verDetalle(g)">
+            <div *ngIf="g.hora == 'Cuarta'">{{g.grupo}}</div>
+            <div *ngIf="g.hora == 'Cuarta'">({{g.aula}})</div>
+            <div *ngIf="g.hora == 'Cuarta'">{{g.tipo_ausencia}}</div>
+          </td>
+          <td class="cursor-pointer mano" scope="col" (click)="verDetalle(g)">
+            <div *ngIf="g.hora == 'Quinta'">{{g.grupo}}</div>
+            <div *ngIf="g.hora == 'Quinta'">({{g.aula}})</div>
+            <div *ngIf="g.hora == 'Quinta'">{{g.tipo_ausencia}}</div>
+          </td>
+          <td class="cursor-pointer mano" scope="col" (click)="verDetalle(g)">
+            <div *ngIf="g.hora == 'Sexta'">{{g.grupo}}</div>
+            <div *ngIf="g.hora == 'Sexta'">({{g.aula}})</div>
+            <div *ngIf="g.hora == 'Sexta'">{{g.tipo_ausencia}}</div>
           </td>
         </tr>
       </tbody>
