@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-12">
+    <h1 class="modal-title">Edición de perfil</h1>
+  </div>
+  <div class="col-12 formulario">
+    <form [formGroup]="editar" (ngSubmit)="onSubmit()" class="row">
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="email" class="form-label"><b>Email</b></label>
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          id="email"
+        />
+        <div *ngIf="submitted && formulario['email'].errors">
+          <div
+            *ngIf="formulario['email'].errors['required']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2"
+          >
+            El email no puede estar vacío.
+          </div>
+          <div
+            *ngIf="formulario['email'].errors['email']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2"
+          >
+            El email introducido no tiene un formato válido.
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="nombre" class="form-label"><b>Nombre</b></label>
+        <input
+          type="text"
+          formControlName="nombre"
+          class="form-control"
+          id="nombre"
+        />
+        <div *ngIf="submitted && formulario['nombre'].errors">
+          <div
+            *ngIf="formulario['nombre'].errors['required']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2"
+          >
+            El nombre no puede estar vacío.
+          </div>
+          <div
+            *ngIf="formulario['nombre'].errors['minlength']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2"
+          >
+            El nombre tiene que tener al menos 3 carácteres.
+          </div>
+          <div
+            *ngIf="formulario['nombre'].errors['maxlength']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2"
+          >
+            El nombre puede tener como máximo 20 carácteres.
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 col-12 col-sm-6">
+        <label for="apellidos" class="form-label"><b>Apellidos</b></label>
+        <input
+          type="text"
+          formControlName="apellidos"
+          class="form-control"
+          id="apellidos"
+        />
+        <div *ngIf="submitted && formulario['apellidos'].errors">
+          <div
+            *ngIf="formulario['apellidos'].errors['required']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2"
+          >
+            El apellido no puede estar vacío.
+          </div>
+          <div
+            *ngIf="formulario['apellidos'].errors['minlength']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2"
+          >
+            El apellido tiene que tener al menos 3 carácteres.
+          </div>
+          <div
+            *ngIf="formulario['apellidos'].errors['maxlength']"
+            class="h6 text-danger bg-white rounded border border-2 border-danger p-2"
+          >
+            El apellido puede tener como máximo 30 carácteres.
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" value="editar">
+        Editar perfil
+      </button>
+    </form>
+  </div>
+  <div class="col-12 col-sm-4 text-center">
+    <input
+      type="button"
+      class="btn btn-warning m-1"
+      value="Cambiar contraseña"
+      (click)="cambiarPass()"
+    />
+  </div>
+  <div class="col-12 col-sm-4 text-center">
+    <input
+      type="button"
+      class="btn btn-success m-1"
+      value="Cambiar rol"
+      (click)="elegirRol()"
+    />
+  </div>
+  <div class="col-12 col-sm-4 text-center">
+    <input
+      type="button"
+      class="btn btn-danger m-1"
+      value="Cerrar sesión"
+      (click)="salir()"
+    />
+  </div>
+</div>

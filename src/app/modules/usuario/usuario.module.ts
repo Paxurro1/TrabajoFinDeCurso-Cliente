@@ -11,6 +11,9 @@ import { VerGuardiasComponent } from './ver-guardias/ver-guardias.component';
 import { DataTablesModule } from 'angular-datatables';
 import { HttpClientModule } from '@angular/common/http';
 import { NotificacionesUsuarioComponent } from './notificaciones-usuario/notificaciones-usuario.component';
+import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
+import { CambiarPassComponent } from './cambiar-pass/cambiar-pass.component';
+import { ElegirRolComponent } from './elegir-rol/elegir-rol.component';
 
 
 @NgModule({
@@ -20,7 +23,10 @@ import { NotificacionesUsuarioComponent } from './notificaciones-usuario/notific
     ReenviarFaltaComponent,
     ElegirDiaComponent,
     VerGuardiasComponent,
-    NotificacionesUsuarioComponent
+    NotificacionesUsuarioComponent,
+    EditarPerfilComponent,
+    CambiarPassComponent,
+    ElegirRolComponent
   ],
   imports: [
     CommonModule,
