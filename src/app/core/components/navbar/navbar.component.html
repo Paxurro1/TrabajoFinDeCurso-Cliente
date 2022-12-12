@@ -47,6 +47,11 @@
             aria-current="page">Registrar usuario
           </a>
         </li>
+        <li *ngIf="usuario.rol_activo == 3">
+          <a class="nav-link link-white" routerLinkActive="active" routerLink="usuario/editar-horario"
+            aria-current="page">Editar horario
+          </a>
+        </li>
         <li *ngIf="usuario.rol_activo == 2">
           <a class="nav-link link-white" routerLinkActive="active" routerLink="jefatura/notificaciones-jefatura"
             aria-current="page">Notificaciones ({{numeroNotificaciones}})

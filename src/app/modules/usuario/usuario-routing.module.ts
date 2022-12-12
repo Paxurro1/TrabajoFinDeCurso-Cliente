@@ -9,6 +9,7 @@ import { NotificacionesUsuarioComponent } from './notificaciones-usuario/notific
 import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 import { CambiarPassComponent } from './cambiar-pass/cambiar-pass.component'
 import { ElegirRolComponent } from './elegir-rol/elegir-rol.component'
+import { EditarHorarioComponent } from './editar-horario/editar-horario.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path:'elegir-rol',
     component: ElegirRolComponent
+  },
+  {
+    path:'editar-horario',
+    component: EditarHorarioComponent
   },
 ];
 
