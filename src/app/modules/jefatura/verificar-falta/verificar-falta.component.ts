@@ -70,9 +70,10 @@ export class VerificarFaltaComponent implements OnInit {
       return;
     }
     let tipo = this.tipos.at(i).value.tipo;
-    //console.log(tipo);
     this.ausencias.splice(i,1)
+    this.tipos.removeAt(i)
     this.motivos.removeAt(i)
+    console.log(tipo);
     this.verificarService.aprobarTarea(id, tipo).subscribe((response) => {
       //console.log(this.ausencias);
       this.toastr.success('Falta aprobada.', 'Aprobada');
@@ -88,7 +89,8 @@ export class VerificarFaltaComponent implements OnInit {
     let motivo = this.motivos.at(i).value.motivo;
     this.ausencias.splice(i,1)
     this.motivos.removeAt(i)
-    //console.log(this.motivos.length)
+    this.tipos.removeAt(i)
+    console.log(motivo)
     this.verificarService.rechazarTarea(id, motivo).subscribe((response) => {
       //console.log(this.ausencias);
       this.toastr.info('Falta rechazada.', 'Rechazada');
