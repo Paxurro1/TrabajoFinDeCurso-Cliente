@@ -15,29 +15,29 @@
       </div>
       <div class="mb-3 col-12 col-sm-6">
         <label for="hora" class="form-label"><b>Hora</b></label>
-        <input readonly type="text" class="form-control" id="hora" value="{{guardia.hora}}">
+        <input readonly type="text" class="form-control" id="hora" value="{{tarea.hora}}">
       </div>
       <div class="mb-3 col-12 col-sm-6">
         <label for="grupo" class="form-label"><b>Grupo</b></label>
-        <input readonly type="text" class="form-control" id="grupo" value="{{guardia.grupo}}">
+        <input readonly type="text" class="form-control" id="grupo" value="{{tarea.grupo}}">
       </div>
       <div class="mb-3 col-12 col-sm-6">
         <label for="aula" class="form-label"><b>Aula</b></label>
-        <input readonly type="text" class="form-control" id="aula" value="{{guardia.aula}}">
+        <input readonly type="text" class="form-control" id="aula" value="{{tarea.aula}}">
       </div>
       <div class="mb-3 col-12 col-sm-6">
         <label for="suplente" class="form-label"><b>Suplente</b></label>
         <input readonly type="text" class="form-control" id="suplente"
-          value="{{guardia.nombreSuplente}} {{guardia.apellidosSuplente}}">
+          value="{{tarea.nombre}} {{tarea.apellidos}}">
       </div>
       <div class="mb-3 col-12 col-sm-6">
         <label for="suplente" class="form-label"><b>Tipo de ausencia</b></label>
         <input readonly type="text" class="form-control" id="suplente"
-          value="{{guardia.descripcion}}">
+          value="{{tarea.descripcion}}">
       </div>
       <div class="mb-3 col-12 col-sm-6">
         <label for="actividades" class="form-label"><b>Actividades</b></label>
-        <textarea readonly class="form-control" id="actividades" rows="4">{{guardia.actividades}}</textarea>
+        <textarea readonly class="form-control" id="actividades" rows="4">{{tarea.actividades}}</textarea>
       </div>
     </div>
   </div>

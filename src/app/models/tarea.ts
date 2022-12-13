@@ -11,7 +11,11 @@ export class Tarea {
       obj['grupo'],
       obj['suplente'],
       obj['actividades'],
-      obj['estado']
+      obj['estado'],
+      obj['apellidos'],
+      obj['nombre'],
+      obj['descripcion'],
+      obj['tipo_ausencia'],
     );
   }
 
@@ -23,6 +27,10 @@ export class Tarea {
     public suplente: string,
     public actividades: string,
     public estado: number,
+    public apellidos: string,
+    public nombre: string,
+    public descripcion: string,
+    public tipo_ausencia: string,
   ) { }
 
 }

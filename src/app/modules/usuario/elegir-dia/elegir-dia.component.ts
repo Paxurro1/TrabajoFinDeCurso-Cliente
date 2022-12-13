@@ -10,6 +10,8 @@ import { DataTableDirective } from 'angular-datatables';
 import { VerGuardiasComponent } from '../ver-guardias/ver-guardias.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Guardia } from 'src/app/models/guardia';
+import { grupoResponse } from 'src/app/models/grupoRespose';
+import { Tarea } from 'src/app/models/tarea';
 
 
 @Component({
@@ -22,6 +24,19 @@ export class ElegirDiaComponent implements AfterViewInit, OnDestroy, OnInit {
   guardias: guardiaResponse[] = [];
   validar: FormGroup;
   submitted: boolean = false;
+  tareaVacia: Tarea = {
+    id: 0,
+    hora: 'NO',
+    aula: '',
+    grupo: '',
+    suplente: '',
+    actividades: '',
+    estado: 0,
+    apellidos: '',
+    nombre: '',
+    descripcion:'',
+    tipo_ausencia:''
+  }
 
   dtTrigger = new Subject<any>();
   @ViewChild(DataTableDirective, { static: false })
@@ -91,6 +106,7 @@ export class ElegirDiaComponent implements AfterViewInit, OnDestroy, OnInit {
     this.faltasService.getGuardias(datos.fecha).subscribe((response) => {
       this.guardias = response;
       //console.log(this.guardias)
+      this.rellenarAux();
       this.rerender();
       this.dtTrigger.next(this.guardias);
       $.fn.dataTable.ext.errMode = 'throw';
@@ -99,13 +115,14 @@ export class ElegirDiaComponent implements AfterViewInit, OnDestroy, OnInit {
     //this.onReset();
   }
 
-  verDetalle(g: Guardia) {
+  verDetalle(g: Guardia, t:Tarea) {
     this.modal.open(VerGuardiasComponent, {
       size: 'xl',
       backdrop: 'static',
       keyboard: false,
     });
     this.faltasService.guardiaTrigger.emit([g]);
+    this.faltasService.tareaTrigger.emit([t]);
   }
 
   get formulario() {
@@ -115,6 +132,45 @@ export class ElegirDiaComponent implements AfterViewInit, OnDestroy, OnInit {
   onReset() {
     this.submitted = false;
     this.validar.reset();
+  }
+
+  rellenarAux() {
+    this.guardias.forEach(g => {
+      g.tareas2 = [];
+      if (g.tareas.find(t => t.hora == 'Primera')) {
+        g.tareas2?.push(g.tareas.find(t => t.hora == 'Primera')!)
+      } else {
+        g.tareas2?.push(this.tareaVacia)
+      }
+      if (g.tareas.find(t => t.hora == 'Segunda')) {
+        g.tareas2?.push(g.tareas.find(t => t.hora == 'Segunda')!)
+      } else {
+        g.tareas2?.push(this.tareaVacia)
+      }
+      if (g.tareas.find(t => t.hora == 'Tercera')) {
+        console.log('eeeee')
+        g.tareas2?.push(g.tareas.find(t => t.hora == 'Tercera')!)
+      } else {
+        g.tareas2?.push(this.tareaVacia)
+      }
+      if (g.tareas.find(t => t.hora == 'Cuarta')) {
+        g.tareas2?.push(g.tareas.find(t => t.hora == 'Cuarta')!)
+      } else {
+        g.tareas2?.push(this.tareaVacia)
+      }
+      if (g.tareas.find(t => t.hora == 'Quinta')) {
+        g.tareas2?.push(g.tareas.find(t => t.hora == 'Quinta')!)
+      } else {
+        g.tareas2?.push(this.tareaVacia)
+      }
+      if (g.tareas.find(t => t.hora == 'Sexta')) {
+        g.tareas2?.push(g.tareas.find(t => t.hora == 'Sexta')!)
+      } else {
+        g.tareas2?.push(this.tareaVacia)
+      }
+      console.log(g.tareas2)
+    });
+    //console.log(this.guardias)
   }
 
 }

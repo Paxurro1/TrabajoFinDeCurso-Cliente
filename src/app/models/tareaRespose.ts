@@ -6,4 +6,8 @@ export interface tareaResponse {
   suplente: string,
   actividades: string,
   estado: number,
+  apellidos: string,
+  nombre: string,
+  descripcion: string,
+  tipo_ausencia:string,
 }

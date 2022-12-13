@@ -12,13 +12,18 @@
     </div>
   </div>
   <div class="row">
-    <label for="cuantos" class="form-label"><strong>Faltas por página: </strong></label>
     <div class="col-sm-4 col-12">
-      <select class="form-select" (change)="handlePageSizeChange($event)">
-        <option *ngFor="let size of pageSizes" [ngValue]="size">
-          {{ size }}
-        </option>
-      </select>
+      <div class="col-sm-4 col-12">
+        <select class="form-select" (change)="handlePageSizeChange($event)">
+          <option *ngFor="let size of pageSizes" [ngValue]="size">
+            {{ size }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-6 col-12">
+      <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" [responsive]="true"
+        (pageChange)="handlePageChange($event)"></pagination-controls>
     </div>
   </div>
   <div class="col-12 formulario mb-1 col-12 border border-2 border-dark rounded" *ngFor="let falta of faltas | paginate : {
@@ -77,8 +82,5 @@
       </div>
     </div>
   </div>
-  <div class="col-md-12">
-    <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" [responsive]="true"
-      (pageChange)="handlePageChange($event)"></pagination-controls>
-  </div>
+
 </ng-container>

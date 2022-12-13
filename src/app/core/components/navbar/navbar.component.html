@@ -54,12 +54,20 @@
         </li>
         <li *ngIf="usuario.rol_activo == 2">
           <a class="nav-link link-white" routerLinkActive="active" routerLink="jefatura/notificaciones-jefatura"
-            aria-current="page">Notificaciones ({{numeroNotificaciones}})
+            aria-current="page">
+            Notificaciones
+            <svg width="20" height="20" class="bi">Notificaciones
+              <use xlink:href="#campana" />
+            </svg> ({{numeroNotificaciones}})
           </a>
         </li>
         <li *ngIf="usuario.rol_activo == 3">
           <a class="nav-link link-white" routerLinkActive="active" routerLink="usuario/notificaciones-usuario"
-            aria-current="page">Notificaciones ({{numeroNotificaciones}})
+            aria-current="page">
+            Notificaciones
+            <svg width="20" height="20" class="bi">
+              <use xlink:href="#campana" />
+            </svg> ({{numeroNotificaciones}})
           </a>
         </li>
       </ul>

@@ -4,24 +4,15 @@
       <h2 class="h2">Gestionar usuarios</h2>
     </div>
     <div class="col-4 d-flex justify-content-end pb-2">
-      <button
-        (click)="addUsuario()"
-        class="btn btn-info px-2 py-1 me-2"
-        type="submit"
-        aria-label="eliminar"
-      >
+      <button (click)="addUsuario()" class="btn btn-info px-2 py-1 me-2" type="submit" aria-label="eliminar">
         Registrar
       </button>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <table
-        datatable
-        [dtOptions]="dtOptions"
-        [dtTrigger]="dtTrigger"
-        class="bg-white table table-striped table-bordered row-border hover text-center table-hover"
-      >
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+        class="bg-white table table-striped table-bordered row-border hover text-center table-hover">
         <thead class="table-danger text-black">
           <tr>
             <th scope="col">Nombre</th>
@@ -42,23 +33,17 @@
               <p>{{ u.email }}</p>
             </td>
             <td scope="col">
-              <button
-                *ngIf="u.email != this.email"
-                (click)="editarUsuario(u)"
-                class="btn btn-outline-warning px-2 py-1 me-2"
-                type="submit"
-                aria-label="modificar"
-              >
-                Modificar
+              <button *ngIf="u.email != this.email" (click)="editarUsuario(u)"
+                class="btn btn-outline-warning px-2 py-1 me-2" type="submit" aria-label="modificar">
+                <svg class="bi" width="16" height="16">
+                  <use xlink:href="#lapiz" />
+                </svg>
               </button>
-              <button
-                *ngIf="u.email != this.email"
-                (click)="borrarUsuario(u.email)"
-                class="btn btn-outline-danger px-2 py-1 me-2"
-                type="submit"
-                aria-label="eliminar"
-              >
-                Borrar
+              <button *ngIf="u.email != this.email" (click)="borrarUsuario(u.email)"
+                class="btn btn-outline-danger px-2 py-1 me-2" type="submit" aria-label="eliminar">
+                <svg class="bi" width="16" height="16">
+                  <use xlink:href="#papelera" />
+                </svg>
               </button>
             </td>
           </tr>

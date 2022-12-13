@@ -15,6 +15,7 @@ import { guardiaResponse } from '../models/guardiaRespose';
 })
 export class FaltaService {
   @Output() guardiaTrigger: EventEmitter<any> = new EventEmitter();
+  @Output() tareaTrigger: EventEmitter<any> = new EventEmitter();
   public ruta: string = 'http://localhost:8000/api/';
   constructor(private http: HttpClient) { }
 

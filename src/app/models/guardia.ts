@@ -1,4 +1,5 @@
 import { guardiaResponse } from "./guardiaRespose";
+import { Tarea } from "./tarea";
 
 
 export class Guardia {
@@ -9,14 +10,8 @@ export class Guardia {
       obj['dia'],
       obj['nombre'],
       obj['apellidos'],
-      obj['hora'],
-      obj['grupo'],
-      obj['aula'],
-      obj['tipo_ausencia'],
-      obj['descripcion'],
-      obj['actividades'],
-      obj['nombreSuplente'],
-      obj['apellidosSuplente'],
+      obj['tareas'],
+      obj['tareas2'],
     );
   }
 
@@ -25,14 +20,8 @@ export class Guardia {
     public dia: Date,
     public nombre: string,
     public apellidos: string,
-    public hora: string,
-    public grupo: string,
-    public aula: string,
-    public tipo_ausencia: string,
-    public descripcion: string,
-    public actividades: string,
-    public nombreSuplente: string,
-    public apellidosSuplente: string,
+    public tareas: Tarea[],
+    public tareas2?: Tarea[],
   ) { }
 
 }

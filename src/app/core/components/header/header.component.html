@@ -1,8 +1,11 @@
-<header class="sticky-top flex-md-nowrap p-0 text-light user-select-none bg-success">
+<header class="cabecera sticky-top flex-md-nowrap p-0 text-light user-select-none cabecera">
   <div class="d-flex bd-highlight align-items-center">
-    <!-- <div *ngIf="isMobileLayout">
-      <button>boton</button>
-    </div> -->
+    <button class="navbar-toggler d-md-none text-white p-2" type="button" data-bs-toggle="collapse"
+      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="true" aria-label="Toggle navigation">
+      <svg width="20" height="20" class="bi">
+        <use xlink:href="#menu" />
+      </svg>
+    </button>
     <div class="me-auto p-2">
       <a>
         <img class="mano" (click)="irInicio()" height="50" src="{{imgLogo}}" alt="Logo de la página">
