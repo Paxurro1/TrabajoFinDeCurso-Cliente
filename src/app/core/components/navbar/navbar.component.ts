@@ -57,5 +57,8 @@ export class NavbarComponent implements OnInit {
     this.numeroNotificaciones = this.notificaciones.filter((n)=>n.estado == '1').length;
   }
 
+  esconderMenu(){
+    document.getElementById('sidebarMenu')?.classList.remove('show')
+  }
 
 }

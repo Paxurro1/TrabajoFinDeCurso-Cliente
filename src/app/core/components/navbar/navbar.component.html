@@ -1,59 +1,59 @@
 <ng-container *ngIf="usuario">
-  <nav id="sidebarMenu">
+  <nav>
     <div class="position-sticky pt-4">
       <ul class="nav nav-pills flex-column">
         <li *ngIf="usuario.rol_activo == 1">
-          <a class="nav-link link-white" routerLinkActive="active" routerLink="admin/crud-usuarios"
+          <a (click)="esconderMenu()" class="nav-link link-white" routerLinkActive="active" routerLink="admin/crud-usuarios"
             aria-current="page">Gestionar usuarios
           </a>
         </li>
         <li *ngIf="usuario.rol_activo == 1">
-          <a class="nav-link link-white" routerLinkActive="active" routerLink="admin/registro-usuarios"
+          <a (click)="esconderMenu()" class="nav-link link-white" routerLinkActive="active" routerLink="admin/registro-usuarios"
             aria-current="page">Añadir usuarios
           </a>
         </li>
         <li *ngIf="usuario.rol_activo == 2">
-          <a class="nav-link link-white" routerLinkActive="active" routerLink="jefatura/verificar-falta"
+          <a (click)="esconderMenu()" class="nav-link link-white" routerLinkActive="active" routerLink="jefatura/verificar-falta"
             aria-current="page">Verificar faltas
           </a>
         </li>
         <li *ngIf="usuario.rol_activo == 3">
-          <a class="nav-link link-white" routerLinkActive="active" routerLink="usuario/add-falta"
+          <a (click)="esconderMenu()" class="nav-link link-white" routerLinkActive="active" routerLink="usuario/add-falta"
             aria-current="page">Añadir falta
           </a>
         </li>
         <li *ngIf="usuario.rol_activo == 3">
-          <a class="nav-link link-white" routerLinkActive="active" routerLink="usuario/reenviar-falta"
+          <a (click)="esconderMenu()" class="nav-link link-white" routerLinkActive="active" routerLink="usuario/reenviar-falta"
             aria-current="page">Faltas no admitidas
           </a>
         </li>
         <li *ngIf="usuario.rol_activo == 3">
-          <a class="nav-link link-white" routerLinkActive="active" routerLink="usuario/ver-falta"
+          <a (click)="esconderMenu()" class="nav-link link-white" routerLinkActive="active" routerLink="usuario/ver-falta"
             aria-current="page">Ver faltas
           </a>
         </li>
         <li *ngIf="usuario.rol_activo == 2">
-          <a class="nav-link link-white" routerLinkActive="active" routerLink="jefatura/historial-faltas"
+          <a (click)="esconderMenu()" class="nav-link link-white" routerLinkActive="active" routerLink="jefatura/historial-faltas"
             aria-current="page">Historial de faltas
           </a>
         </li>
         <li *ngIf="usuario.rol_activo == 2 || usuario.rol_activo == 3">
-          <a class="nav-link link-white" routerLinkActive="active" routerLink="usuario/elegir-dia"
+          <a (click)="esconderMenu()" class="nav-link link-white" routerLinkActive="active" routerLink="usuario/elegir-dia"
             aria-current="page">Calendario de faltas
           </a>
         </li>
         <li *ngIf="usuario.rol_activo == 2">
-          <a class="nav-link link-white" routerLinkActive="active" routerLink="jefatura/registrar-usuario"
+          <a (click)="esconderMenu()" class="nav-link link-white" routerLinkActive="active" routerLink="jefatura/registrar-usuario"
             aria-current="page">Registrar usuario
           </a>
         </li>
         <li *ngIf="usuario.rol_activo == 3">
-          <a class="nav-link link-white" routerLinkActive="active" routerLink="usuario/editar-horario"
+          <a (click)="esconderMenu()" class="nav-link link-white" routerLinkActive="active" routerLink="usuario/editar-horario"
             aria-current="page">Editar horario
           </a>
         </li>
         <li *ngIf="usuario.rol_activo == 2">
-          <a class="nav-link link-white" routerLinkActive="active" routerLink="jefatura/notificaciones-jefatura"
+          <a (click)="esconderMenu()" class="nav-link link-white" routerLinkActive="active" routerLink="jefatura/notificaciones-jefatura"
             aria-current="page">
             Notificaciones
             <svg width="20" height="20" class="bi">Notificaciones
@@ -62,7 +62,7 @@
           </a>
         </li>
         <li *ngIf="usuario.rol_activo == 3">
-          <a class="nav-link link-white" routerLinkActive="active" routerLink="usuario/notificaciones-usuario"
+          <a (click)="esconderMenu()" class="nav-link link-white" routerLinkActive="active" routerLink="usuario/notificaciones-usuario"
             aria-current="page">
             Notificaciones
             <svg width="20" height="20" class="bi">
